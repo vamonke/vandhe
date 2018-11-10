@@ -26,6 +26,16 @@ $(document).ready(function() {
             if(step === 3){
               $(".login-link").hide();
               $(".button-primary").show();
+              console.log($("input[name=course]").val());
+              var course = $("input[name=course]").val();
+              $.get("/modules/" + course, function(data, status){
+                  console.log(data);
+
+                  data.modules.forEach((module) => {
+                    var template = `<option>` + module.code + ` - `+ module.name + `</option>`
+                    $('#modules').append(template);
+                  });
+              });
             }
         }
     });

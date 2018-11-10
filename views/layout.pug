@@ -13,15 +13,15 @@ html
     script(src='/js/lib/bootstrap.min.js')
 
   body
-    .index
 
-      include partials/header
 
-      .container-fluid
-        include partials/flash
-        block content
+    include partials/header
 
-      include partials/footer
+    .container-fluid
+      include partials/flash
+      block content
+
+    include partials/footer
 
     
     script(src='/js/lib/popper.min.js')
