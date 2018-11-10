@@ -26,5 +26,10 @@ exports.getPaperByCodeYearSem = (req, res) => {
       school: school,
     }
   };
-  res.json({ paper: hardCodedPaper});
+
+
+  res.render('papers/paper', {
+    paper: JSON.stringify(hardCodedPaper)
+  });
+  // res.json();
 };
