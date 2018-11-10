@@ -32,9 +32,13 @@ dotenv.load({ path: '.env.example' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
-const questionController = require('./controllers/question');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
+
+const moduleController = require('./controllers/module');
+const paperController = require('./controllers/paper');
+const questionController = require('./controllers/question');
+const answerController = require('./controllers/answer');
 
 /**
  * API keys and Passport configuration.
@@ -144,10 +148,27 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
+
+/***
+ * Module routes
+*/
+app.get('/modules/:course', moduleController.getModulesByCourse);
+
+/***
+ * Paper routes
+ */
+app.get('/papers/:code/:year/:sem', paperController.getPaperByCodeYearSem);
+
 /***
  * Question routes
 */
 app.get('/questions/:questionId', questionController.getQuestionById);
+
+/***
+ * Answer routes
+*/
+app.get('/answers/:questionId', answerController.getAnswersByQuestionId);
+
 
 /**
  * API examples routes.
