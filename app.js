@@ -122,6 +122,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+// app.use('/static', express.static(path.join(__dirname,'public'));
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), { maxAge: 31557600000 }));
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), { maxAge: 31557600000 }));
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
@@ -148,6 +149,10 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
+app.get('/api/test', (req, res) => {
+  console.log(req.params);
+  res.json(req.params);
+});
 
 /***
  * Module routes
@@ -157,7 +162,7 @@ app.get('/modules/:course', moduleController.getModulesByCourse);
 /***
  * Paper routes
  */
-app.get('/papers/:code/:year/:sem', paperController.getPaperByCodeYearSem);
+app.get('/papers', paperController.getPaperByCodeYearSem);
 
 /***
  * Question routes

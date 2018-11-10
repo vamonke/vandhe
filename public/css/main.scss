@@ -1,4 +1,4 @@
-@import "themes/default/variables";
+@import "themes/flatly/variables";
 
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/@ladjs/bootstrap-social/bootstrap-social.scss";
@@ -7,7 +7,8 @@
 @import "node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "node_modules/@fortawesome/fontawesome-free/scss/solid";
 
-@import "themes/default/default";
+@import "themes/flatly/flatly";
+
 
 // Scaffolding
 // -------------------------
@@ -55,13 +56,16 @@ textarea {
   padding: 0px;
   margin-bottom: 20px;
   display: block;
+  color: white;
 }
 
 .navbar-brand{
   font-size: 18px;
   float: left;
   margin-left: 15px;
+
 }
+
 
 .navbar-toggler {
   position: relative;
@@ -69,6 +73,7 @@ textarea {
   margin-right: 15px;
   margin-bottom: 8px;
   margin-top: 8px;
+
 }
 
 .navbar-toggler-icon {

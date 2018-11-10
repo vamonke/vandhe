@@ -5,9 +5,10 @@
  */
 exports.getPaperByCodeYearSem = (req, res) => {
   // Paper
-  const code = req.params.code;
-  const year = req.params.year;
-  const sem = req.params.sem;
+  const code = req.query.code;
+  const year = req.query.year;
+  const sem = req.query.sem;
+  // console.log(req.query);
 
   // Module
   const module_id = 'module_id1';

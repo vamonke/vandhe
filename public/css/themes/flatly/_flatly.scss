@@ -5,7 +5,9 @@
 
 // Variables ===================================================================
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic" !default;
+
+
+$web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|Oswald:400,600" !default;
 @import url($web-font-path);
 
 // Navbar =======================================================================
@@ -17,7 +19,11 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
 }
 
 .bg-dark {
-  background-color: $success !important;
+  background: {
+    image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,0));
+    color: rgba(0,0,0,0) !important;
+  }
+
   &.navbar-dark .navbar-nav {
     .nav-link:focus,
     .nav-link:hover,
@@ -26,7 +32,17 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
     }
   }
 }
-
+.navbar-light {
+  .navbar-brand{
+    color: #fff;
+    &:hover{
+      color: $secondary;
+    }
+  }
+}
+.nav-link{
+  color: #fff !important;
+}
 // Buttons =====================================================================
 
 .btn {
@@ -179,4 +195,79 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
 // Containers ==================================================================
 .modal .close{
   color: $black;
+}
+.index{
+  background:{
+    image: url('/images/home.jpg');
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+  height: 100vh;
+  width: 100vw;
+  position:absolute;
+  top: 0;
+
+}
+
+
+footer {
+  color: $white;
+}
+
+h1 {
+  font-family: 'Oswald';
+}
+
+.home-form{
+  background-color: rgba(0,0,0,0.7);
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  text-align: center;
+  /* margin-top: -250px; */
+  /* margin-left: -25%; */
+}
+section{
+  color: white;
+}
+
+section fieldset{
+  border: 0;
+}
+.school-button{
+  width: 30%;
+  padding: 10px;
+  margin: 10px;
+}
+.login-link{
+  color: white;
+}
+select {
+  width: 100%;
+}
+.back-button{
+  display: block;
+  margin-bottom: 30px;
+}
+.form-control{
+  margin: 20px 0px;
+}
+.progress{
+  margin-bottom: 30px;
+}
+#inline-href{
+  display: inline;
+}
+input[type=radio] {
+    visibility:hidden;
+}
+label {
+    cursor: pointer;
+}
+input[type=radio]:checked + label {
+    /* background: red; */
 }
