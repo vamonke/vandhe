@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const moduleSchema = new mongoose.Schema({
-  code: Number,
+  code: String,
   name: String,
-  school: String,
+  course: String,
 }, { timestamps: true });
 
 const Module = mongoose.model('Module', moduleSchema);
