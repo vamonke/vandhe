@@ -255,9 +255,9 @@ select {
   display: block;
   margin-bottom: 30px;
 }
-.form-control{
-  margin: 20px 0px;
-}
+// .form-control{
+//   margin: 20px 0px;
+// }
 .progress{
   margin-bottom: 30px;
 }
@@ -272,4 +272,38 @@ label {
 }
 input[type=radio]:checked + label {
     /* background: red; */
+}
+.paper-container{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#sidebar{
+  background-color: #FFC008;
+  padding: 30px;
+  position: relative;
+}
+.sidebar-row {
+  height:100%;
+}
+.full-btn{
+  width: 100%;
+}
+
+#community-forum-button{
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+}
+.did-not-find{
+  font-size: 12px;
+  text-align: center;
+  margin: auto;
+}
+.head-over{
+  font-size: 10px;
+  text-align: center;
+  margin: auto;
 }

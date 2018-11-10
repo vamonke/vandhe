@@ -1,5 +1,59 @@
 extends ../layout
 
 block content
-  
-  #{paper}
+  .paper-container
+    .row.sidebar-row
+      #sidebar.col-2
+        .form-group
+          label School of
+          select.form-control
+            option(selected='')
+              | EEE
+            option
+              | SCBE
+            option
+              | SCSE
+            option
+              | ADM
+            option
+              | NBS
+        .form-group
+          label Course
+          select.form-control
+            option(selected='')
+              | IEM
+            option
+              | EEE
+        .form-group
+          label Course Code
+          select.form-control
+            option(selected='')
+              | IM4717
+            option
+              | IM4483
+        .form-group
+          label Year
+          select.form-control
+            option(selected='')
+              | 4
+            option
+              | 1
+            option
+              | 2
+            option
+              | 3
+        .form-group
+          label Sem
+          select.form-control
+            option(selected='')
+              | 1
+            option
+              | 2
+        .form-group
+          button.btn.btn-outline-dark.full-btn(type='button') Update
+        #community-forum-button.form-group
+          p.did-not-find Didn't find what you were looking for?
+          p.head-over Head over to our community forums for more!
+          button.btn.btn-outline-dark.full-btn(type='button') Community Forums
+      .col-10
+        include main-container
