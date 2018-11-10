@@ -2,6 +2,10 @@ extends ../layout
 
 block content
   .page-header
-    h3 A question
+    h3 Question
 
-  div= JSON.stringify(question)
+  div=question.text
+  h3 Answers
+  ul
+    for answer in answers
+      li= answer.text

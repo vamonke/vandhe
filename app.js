@@ -157,7 +157,7 @@ app.get('/api/test', (req, res) => {
 /***
  * Module routes
 */
-app.get('/modules/:course', moduleController.getModulesByCourse);
+app.get('/modules', moduleController.getModulesByCourse);
 
 /***
  * Paper routes
