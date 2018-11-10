@@ -1,4 +1,6 @@
 
+const lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
 /**
  * GET /paper
  * Get paper by course code, year and semester.
@@ -24,7 +26,29 @@ exports.getPaperByCodeYearSem = (req, res) => {
       code: code,
       name: name,
       school: school,
-    }
+    },
+    questions: [
+      {
+        id: 'questionId1',
+        questionNo: 1,
+        text: lorem_ipsum
+      },
+      {
+        id: 'questionId2',
+        questionNo: 2,
+        text: lorem_ipsum
+      },
+      {
+        id: 'questionId3',
+        questionNo: 3,
+        text: lorem_ipsum
+      },
+      {
+        id: 'questionId4',
+        questionNo: 4,
+        text: lorem_ipsum
+      }
+    ]
   };
   res.json({ paper: hardCodedPaper});
 };
