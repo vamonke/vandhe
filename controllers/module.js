@@ -1,7 +1,7 @@
 const Module = require('../models/Module');
 
 /**
- * GET /modules
+ * GET /api/modules
  * Get modules by course.
  */
 exports.getModulesByCourse = async (req, res) => {

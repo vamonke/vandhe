@@ -1,38 +1,21 @@
-const lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+const Answer = require('../models/Answer');
 
 /**
- * GET /answers/:questionId
+ * GET /api/answers/:id
+ * Get answers by id.
+ */
+exports.getAnswersById = async (req, res) => {
+  const id = req.params.answerId;
+  const answer = await Answer.findById(id );
+  res.json(answer);
+};
+
+/**
+ * GET /api/questions/:questionId/answers
  * Get answers by question id.
  */
-exports.getAnswersByQuestionId = (req, res) => {
-  const questionId = req.params.questionId;
-  const hardCodedAnswers = [{
-    id: 'answer_id1',
-    text: lorem_ipsum,
-    votes: 24,
-    user: {
-      name: 'name1',
-      id: 'user_id1'
-    },
-    questionId: questionId
-  }, {
-    id: 'answer_id2',
-    text: lorem_ipsum,
-    votes: 24,
-    user: {
-      name: 'name2',
-      id: 'user_id2'
-    },
-    questionId: questionId
-  }, {
-    id: 'answer_id3',
-    text: lorem_ipsum,
-    votes: 24,
-    user: {
-      name: 'name3',
-      id: 'user_id3'
-    },
-    questionId: questionId
-  }];
-  res.json({ answers: hardCodedAnswers });
+exports.getAnswersByQuestionId = async (req, res) => {
+  const question_id = req.params.questionId;
+  const answers = await Answer.find({ question_id });
+  res.json({ answers });
 };
