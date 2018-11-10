@@ -1,4 +1,3 @@
-
 /**
  * GET /question
  * Get question by id.
@@ -15,5 +14,5 @@ exports.getQuestionById = (req, res) => {
       name: 'User 1'
     }
   };
-  res.render('question/question', { question: hardCodedQuestion});
+  res.render('question/question', { question: hardCodedQuestion });
 };
