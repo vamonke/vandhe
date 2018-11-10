@@ -262,3 +262,12 @@ select {
 #inline-href{
   display: inline;
 }
+input[type=radio] {
+    visibility:hidden;
+}
+label {
+    cursor: pointer;
+}
+input[type=radio]:checked + label {
+    /* background: red; */
+}

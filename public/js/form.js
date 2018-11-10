@@ -3,7 +3,8 @@ $(document).ready(function() {
     $("button.button-outline").hide();
     $("section[data-step=1]").show();
     $(".button-primary").hide();
-    $("input[type='submit']").click(function(e) {
+
+    $("input[type='radio']").change(function(e) {
         e.preventDefault();
         var step = $("form").data("step");
         var isValid = true;
@@ -19,6 +20,7 @@ $(document).ready(function() {
             if(step > $("section[data-step]").length) {
                 $("form").submit(); //Submit the form to the URL in the action attribute, or you could always do something else.
             }
+            console.log(step);
             $("form").data("step", step);
             $("section[data-step]").hide();
             $("section[data-step='" + step + "']").show();
@@ -30,9 +32,11 @@ $(document).ready(function() {
               var course = $("input[name=course]").val();
               $.get("/modules/" + course, function(data, status){
                   console.log(data);
-
+                  $('#modules').empty();
+                  var template = `<option disabled selected>Select your module</option>`
+                  $('#modules').append(template);
                   data.modules.forEach((module) => {
-                    var template = `<option>` + module.code + ` - `+ module.name + `</option>`
+                    var template = `<option value=` + module.code + `>` + module.code + ` - `+ module.name + `</option>`
                     $('#modules').append(template);
                   });
               });

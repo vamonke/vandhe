@@ -2,104 +2,136 @@ extends layout
 
 block content
   .index
-  .home-form
-    if user
-      form(method='GET', action='.', data-step='1')
-      button.btn.btn-warning.button-outline.back-button(type='button') Back
-      section(data-step='1')
-        //- .progress
-        //-   .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
-        fieldset
-          legend
-            | What paper are you looking for?
-          .row
-            .col-12
-              select.form-control#modules
-                option(disabled='disabled', selected='')
-                  | Select Module
-                
-          .row
-            .col-6
-              select.form-control
-                option(disabled='disabled', selected='')
-                  | Year
-                option
-                  | 2018
-                option
-                  | 2017
-                option
-                  | 2016
-                option
-                  | 2015
-            .col-6
-              select.form-control
-                option(disabled='disabled', selected='')
-                  | Semester
-                option
-                  | 1
-                option
-                  | 2
-      input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
-    else
-      form(method='POST', action='.', data-step='1')
-      button.btn.btn-warning.button-outline.back-button(type='button') Back
-      section(data-step='1')
-        .progress
-          .progress-bar.bg-warning(role='progressbar', style='width: 0%', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100')
-        fieldset
-          legend What school are you from?
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='SCBE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='SCSE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='EEE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='MAE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='CEE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='MSE')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='ADM')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='SPMS')
-          input.btn.btn-outline-light.school-button(type='submit', name='school', value='NBS')
-      section(data-step='2')
-        .progress
-          .progress-bar.bg-warning(role='progressbar', style='width: 33%', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100')
-        fieldset
-          legend
-            | What course are you from?
-          input.btn.btn-outline-light.school-button(type='submit', name='course', value='EEE')
-          input.btn.btn-outline-light.school-button(type='submit', name='course', value='IEM')
-      section(data-step='3')
-        .progress
-          .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
-        fieldset
-          legend
-            | What paper are you looking for?
-          .row
-            .col-12
-              select.form-control#modules
-                option(disabled='disabled', selected='')
-                  | Select Module
-                
-          .row
-            .col-6
-              select.form-control
-                option(disabled='disabled', selected='')
-                  | Year
-                option
-                  | 2018
-                option
-                  | 2017
-                option
-                  | 2016
-                option
-                  | 2015
-            .col-6
-              select.form-control
-                option(disabled='disabled', selected='')
-                  | Semester
-                option
-                  | 1
-                option
-                  | 2
-      label.login-link
-        | Done this already? Log In 
-        a(href='/login') here!
-      input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
+    .home-form
+      if user 
+        form(method='POST', action='.', data-step='1')
+          button.btn.btn-warning.button-outline.back-button(type='button') Back
+          section(data-step='1')
+            .progress
+              .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
+            fieldset
+              legend
+                | What paper are you looking for?
+              .row
+                .col-12
+                  select.form-control
+                    option(disabled='', selected='')
+                      | Select Module
+              .row
+                .col-6
+                  select.form-control
+                    option(disabled='disabled', selected='')
+                      | Year
+                    option
+                      | 2018
+                    option
+                      | 2017
+                    option
+                      | 2016
+                    option
+                      | 2015
+                .col-6
+                  select.form-control
+                    option(disabled='disabled', selected='')
+                      | Semester
+                    option
+                      | 1
+                    option
+                      | 2
+          label.login-link
+            | Done this already? Log In 
+            a(href='#') here!
+          input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
+      else
+        form(method='GET', action='/papers', data-step='1')
+          button.btn.btn-warning.button-outline.back-button(type='button') Back
+          section(data-step='1')
+            .progress
+              .progress-bar.bg-warning(role='progressbar', style='width: 0%', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100')
+            fieldset
+              legend What school are you from?
+              .row
+                .col-4
+                  input#radio-scbe(type='radio', name='school', value='SCBE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-scbe') SCBE
+                .col-4
+                  input#radio-scse(type='radio', name='school', value='SCSE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-scse') SCSE
+                .col-4
+                  input#radio-eee(type='radio', name='school', value='EEE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-eee') EEE
+                .col-4
+                  input#radio-mae(type='radio', name='school', value='MAE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-mae')
+                    | MAE
+                .col-4
+                  input#radio-cee(type='radio', name='school', value='CEE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-mae')
+                    | CEE
+                .col-4
+                  input#radio-mse(type='radio', name='school', value='MSE')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-mse')
+                    | MSE
+                .col-4
+                  input#radio-adm(type='radio', name='school', value='ADM')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-adm')
+                    | ADM
+                .col-4
+                  input#radio-spms(type='radio', name='school', value='SPMS')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-spms')
+                    | SPMS
+                .col-4
+                  input#radio-nbs(type='radio', name='school', value='NBS')
+                  label.btn.btn-outline-light.school-button.schoolRadioLabel(for='radio-nbs')
+                    | NBS
+          section(data-step='2')
+            .progress
+              .progress-bar.bg-warning(role='progressbar', style='width: 33%', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100')
+            fieldset
+              legend
+                | What course are you from?
+              .row
+                .col-6
+                  input#course-eee(type='radio', name='course', value='EEE')
+                  label.btn.btn-outline-light.school-button(for='course-eee') EEE
+                .col-6
+                  input#course-iem(type='radio', name='course', value='IEM')
+                  label.btn.btn-outline-light.school-button(for='course-iem') IEM
+          section(data-step='3')
+            .progress
+              .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
+            fieldset
+              legend
+                | What paper are you looking for?
+              .row
+                .col-12
+                  select.form-control#modules(name='code')
+                    option(disabled='', selected='')
+                      | Select Module
+              .row
+                .col-6
+                  select.form-control(name='year')
+                    option(disabled='disabled', selected='')
+                      | Year
+                    option
+                      | 2018
+                    option
+                      | 2017
+                    option
+                      | 2016
+                    option
+                      | 2015
+                .col-6
+                  select.form-control(name='sem')
+                    option(disabled='disabled', selected='')
+                      | Semester
+                    option
+                      | 1
+                    option
+                      | 2
+          label.login-link
+            | Done this already? Log In 
+            a(href='#') here!
+          input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
+
   script(src='js/form.js')
