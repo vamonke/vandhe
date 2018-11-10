@@ -1,8 +1,61 @@
 extends layout
 
 block content
-
-
-  #search-box
-    h1 Got Question? Enquire Now!
-    input.form-control(type='text', placeholder='Enter your course code', aria-label='Username', aria-describedby='basic-addon1')
+  .home-form
+    form(method='POST', action='.', data-step='1')
+    button.btn.btn-warning.button-outline.back-button(type='button') Back
+    section(data-step='1')
+      .progress
+        .progress-bar.bg-warning(role='progressbar', style='width: 0%', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100')
+      fieldset
+        legend What school are you from?
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='SCBE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='SCSE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='EEE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='MAE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='CEE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='MSE')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='ADM')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='SPMS')
+        input.btn.btn-outline-light.school-button(type='submit', name='school', value='NBS')
+    section(data-step='2')
+      .progress
+        .progress-bar.bg-warning(role='progressbar', style='width: 33%', aria-valuenow='33', aria-valuemin='0', aria-valuemax='100')
+      fieldset
+        legend
+          | What course are you from?
+        input.btn.btn-outline-light.school-button(type='submit', name='course', value='EEE')
+        input.btn.btn-outline-light.school-button(type='submit', name='course', value='IEM')
+    section(data-step='3')
+      .progress
+        .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
+      fieldset
+        legend
+          | What paper are you looking for?
+        .row
+          .col-12
+            input.form-control(type='text', placeholder='Course Code', aria-describedby='basic-addon1')
+        .row
+          .col-6
+            select.form-control
+              option(disabled='disabled', selected='')
+                | Year
+              option
+                | 2018
+              option
+                | 2017
+              option
+                | 2016
+              option
+                | 2015
+          .col-6
+            select.form-control
+              option(disabled='disabled', selected='')
+                | Semester
+              option
+                | 1
+              option
+                | 2
+    label.login-link Done this already? Log In here!
+    input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
+  script(src='js/form.js')

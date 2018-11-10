@@ -5,7 +5,9 @@
 
 // Variables ===================================================================
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic" !default;
+
+
+$web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|Oswald:400,600" !default;
 @import url($web-font-path);
 
 // Navbar =======================================================================
@@ -209,19 +211,51 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
 }
 
 
-#search-box{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  margin: {
-    top: -50px;
-    left: -25%;
-  }
-  h1{
-    color: white;
-  }
-}
 footer {
   color: $white;
+}
+
+h1 {
+  font-family: 'Oswald';
+}
+
+.home-form{
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  text-align: center;
+  /* margin-top: -250px; */
+  /* margin-left: -25%; */
+}
+section{
+  color: white;
+}
+
+section fieldset{
+  border: 0;
+}
+.school-button{
+  width: 30%;
+  padding: 10px;
+  margin: 10px;
+}
+.login-link{
+  color: white;
+}
+select {
+  width: 100%;
+}
+.back-button{
+  display: block;
+  margin-bottom: 30px;
+}
+.form-control{
+  margin: 20px 0px;
+}
+.progress{
+  margin-bottom: 30px;
 }
