@@ -38,9 +38,6 @@ block content
                       | 1
                     option
                       | 2
-          label.login-link
-            | Done this already? Log In 
-            a(href='#') here!
           input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
       else
         form(method='GET', action='/papers', data-step='1')
@@ -105,30 +102,33 @@ block content
                 | What paper are you looking for?
               .row
                 .col-12
-                  select.form-control#modules(name='code')
-                    option(disabled='', selected='')
-                      | Select Module
+                  .form-group
+                    select.form-control#modules(name='code')
+                      option(disabled='', selected='')
+                        | Select Module
               .row
                 .col-6
-                  select.form-control(name='year')
-                    option(disabled='disabled', selected='')
-                      | Year
-                    option
-                      | 2018
-                    option
-                      | 2017
-                    option
-                      | 2016
-                    option
-                      | 2015
+                  .form-group
+                    select.form-control(name='year')
+                      option(disabled='disabled', selected='')
+                        | Year
+                      option
+                        | 2018
+                      option
+                        | 2017
+                      option
+                        | 2016
+                      option
+                        | 2015
                 .col-6
-                  select.form-control(name='sem')
-                    option(disabled='disabled', selected='')
-                      | Semester
-                    option
-                      | 1
-                    option
-                      | 2
+                  .form-group
+                    select.form-control(name='sem')
+                      option(disabled='disabled', selected='')
+                        | Semester
+                      option
+                        | 1
+                      option
+                        | 2
           label.login-link
             | Done this already? Log In 
             a(href='#') here!

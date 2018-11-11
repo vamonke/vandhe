@@ -19,9 +19,10 @@ html {
 }
 
 body {
-  padding-top: 80px;
-  margin-bottom: 75px;
+  // padding-top: 80px;
+  // margin-bottom: 75px;
   font-size: 14px;
+
 }
 
 footer {
@@ -54,9 +55,9 @@ textarea {
 
 .navbar{
   padding: 0px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   display: block;
-  color: white;
+  // color: white;
 }
 
 .navbar-brand{
@@ -119,3 +120,9 @@ textarea {
 .far {
   margin-right: 6px;
 }
+.fixed-top {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030; }

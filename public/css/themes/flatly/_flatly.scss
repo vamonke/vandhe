@@ -20,8 +20,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|
 
 .bg-dark {
   background: {
-    image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,0));
-    color: rgba(0,0,0,0) !important;
+    // image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,0));
+    color: rgba(255,255,255,1) !important;
   }
 
   &.navbar-dark .navbar-nav {
@@ -34,14 +34,14 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|
 }
 .navbar-light {
   .navbar-brand{
-    color: #fff;
+    color: #000;
     &:hover{
       color: $secondary;
     }
   }
 }
 .nav-link{
-  color: #fff !important;
+  color: #000 !important;
 }
 // Buttons =====================================================================
 
@@ -207,6 +207,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|
   width: 100vw;
   position:absolute;
   top: 0;
+  left: 0;
+  z-index:0;
 
 }
 
@@ -253,9 +255,7 @@ select {
   display: block;
   margin-bottom: 30px;
 }
-.form-control{
-  margin: 20px 0px;
-}
+
 .progress{
   margin-bottom: 30px;
 }
@@ -270,4 +270,63 @@ label {
 }
 input[type=radio]:checked + label {
     /* background: red; */
+}
+.paper-container{
+  // width: 100vw;
+  height: 95vh;
+  // position: absolute;
+  top: 0;
+  left: 0;
+}
+#sidebar{
+  background-color: #FFC008;
+  padding: 30px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+  height: 100%;
+  width: 16.66667%;
+}
+.sidebar-row {
+  height:100%;
+  overflow: scroll;
+  margin-left: 20%;
+}
+.full-btn{
+  width: 100%;
+}
+
+#community-forum-button{
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+}
+.did-not-find{
+  font-size: 12px;
+  text-align: center;
+  margin: auto;
+}
+.head-over{
+  font-size: 10px;
+  text-align: center;
+  margin: auto;
+}
+.no-paper{
+  text-align: center;
+  width: 50%;
+  margin: 20% auto;
+}
+#paper-main-container{
+  padding-top: 30px;
+}
+.question-card-number{
+  float: left;
+  margin-right: 30px;
+}
+.question-card-row{
+  margin: {
+    top: 20px;
+    bottom: 20px;
+  }
 }
