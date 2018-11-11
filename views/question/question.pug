@@ -6,6 +6,14 @@ block content
 
   div=question.text
   h3 Answers
-  ul
+  .answers
     for answer in answers
-      li= answer.text
+      .answer
+        .vote
+          .upvote
+          =answer.votes
+          .downvote
+        .text
+          =answer.text
+          .small
+          =answer.user_id.email + ' | ' +  answer.createdAt
