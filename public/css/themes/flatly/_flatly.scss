@@ -272,7 +272,7 @@ input[type=radio]:checked + label {
     /* background: red; */
 }
 .paper-container{
-  width: 100vw;
+  // width: 100vw;
   height: 95vh;
   // position: absolute;
   top: 0;
@@ -281,10 +281,17 @@ input[type=radio]:checked + label {
 #sidebar{
   background-color: #FFC008;
   padding: 30px;
-  // position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+  height: 100%;
+  width: 16.66667%;
 }
 .sidebar-row {
   height:100%;
+  overflow: scroll;
+  margin-left: 20%;
 }
 .full-btn{
   width: 100%;
@@ -304,4 +311,22 @@ input[type=radio]:checked + label {
   font-size: 10px;
   text-align: center;
   margin: auto;
+}
+.no-paper{
+  text-align: center;
+  width: 50%;
+  margin: 20% auto;
+}
+#paper-main-container{
+  padding-top: 30px;
+}
+.question-card-number{
+  float: left;
+  margin-right: 30px;
+}
+.question-card-row{
+  margin: {
+    top: 20px;
+    bottom: 20px;
+  }
 }

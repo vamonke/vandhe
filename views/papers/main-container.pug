@@ -1,2 +1,22 @@
-.container
-  #{paper}
+.container#paper-main-container
+  if (paper)
+    .row
+      .col-12
+        h1 What question are you looking for?
+    each question in questions
+      .row.question-card-row
+        .col-12
+          .card
+            .card-body
+              h1.question-card-number= "Q" + question.questionNo
+              p= question.text
+    
+    .row
+      p= questions
+  else
+    .no-paper
+      h1 We could not find what you were looking for. Try searching again?
+      h1 OR
+      h1 Ask a question!
+      a(href="#")
+        input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')

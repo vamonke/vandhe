@@ -30,7 +30,7 @@ $(document).ready(function() {
               $(".button-primary").show();
               console.log($("input[name=course]").val());
               var course = $("input[name=course]").val();
-              $.get("/modules/" + course, function(data, status){
+              $.get("/api/modules?course=IEM", function(data, status){
                   console.log(data);
                   $('#modules').empty();
                   var template = `<option disabled selected>Select your module</option>`
