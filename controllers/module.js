@@ -1,25 +1,11 @@
+const Module = require('../models/Module');
 
 /**
- * GET /modules/:course
+ * GET /api/modules
  * Get modules by course.
  */
-exports.getModulesByCourse = (req, res) => {
-  const course = req.params.course; // e.g. IEM
-  const hardCodedModules = [{
-    id: 'module_id1',
-    code: 'IM4717',
-    name: 'Web Application Design',
-    course: course
-  }, {
-    id: 'module_id2',
-    code: 'IM4791',
-    name: 'Database Systems',
-    course: course
-  }, {
-    id: 'module_id3',
-    code: 'IM4483',
-    name: 'Artificial Intelligence and Data Mining',
-    course: course
-  }];
-  res.json({ modules: hardCodedModules });
+exports.getModulesByCourse = async (req, res) => {
+  const course = req.query.course.toUpperCase();
+  const modules = await Module.find({ course });
+  res.json({ modules: modules });
 };

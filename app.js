@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const chalk = require('chalk');
 const errorHandler = require('errorhandler');
-const lusca = require('lusca');
+// const lusca = require('lusca');
 const dotenv = require('dotenv');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
@@ -39,6 +39,7 @@ const moduleController = require('./controllers/module');
 const paperController = require('./controllers/paper');
 const questionController = require('./controllers/question');
 const answerController = require('./controllers/answer');
+const answerVoteController = require('./controllers/answerVote');
 
 /**
  * API keys and Passport configuration.
@@ -93,15 +94,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-  }
-});
-app.use(lusca.xframe('SAMEORIGIN'));
-app.use(lusca.xssProtection(true));
+// app.use((req, res, next) => {
+//   if (req.path === '/api/upload') {
+//     next();
+//   } else {
+//     lusca.csrf()(req, res, next);
+//   }
+// });
+// app.use(lusca.xframe('SAMEORIGIN'));
+// app.use(lusca.xssProtection(true));
 app.disable('x-powered-by');
 app.use((req, res, next) => {
   res.locals.user = req.user;
@@ -157,7 +158,7 @@ app.get('/api/test', (req, res) => {
 /***
  * Module routes
 */
-app.get('/modules/:course', moduleController.getModulesByCourse);
+app.get('/api/modules', moduleController.getModulesByCourse);
 
 /***
  * Paper routes
@@ -172,7 +173,14 @@ app.get('/questions/:questionId', questionController.getQuestionById);
 /***
  * Answer routes
 */
-app.get('/answers/:questionId', answerController.getAnswersByQuestionId);
+app.get('/api/answers/:answerId', answerController.getAnswersById);
+app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);
+
+/***
+ * Answer Vote routes
+*/
+app.post('/api/answer/vote', answerVoteController.vote);
+
 
 
 /**

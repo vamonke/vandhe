@@ -1,35 +1,21 @@
+const Module = require('../models/Module');
+const Paper = require('../models/Paper');
+const Question = require('../models/Question');
 
 /**
  * GET /paper
- * Get paper by course code, year and semester.
+ * Get paper by course code, year and semester, and its questions
  */
-exports.getPaperByCodeYearSem = (req, res) => {
-  // Paper
-  const code = req.query.code;
+exports.getPaperByCodeYearSem = async (req, res) => {
+  const code = req.query.code.toUpperCase();
   const year = req.query.year;
-  const sem = req.query.sem;
+  const semester = req.query.sem;
   // console.log(req.query);
-
-  // Module
-  const module_id = 'module_id1';
-  const name = 'Artificial Intelligence and Data Mining';
-  const school = 'School of Electrical and Electronic Engineering';
-
-  const hardCodedPaper = {
-    paper_id: 'paper_id1',
-    year: year,
-    semester: sem,
-    module: {
-      id: module_id,
-      code: code,
-      name: name,
-      school: school,
-    }
-  };
-
-
+  const mod = await Module.findOne({ code });
+  const paper = await Paper.findOne({ year, semester, module_id: mod._id });
+  const questions = await Question.find({ paper_id: paper._id });
   res.render('papers/paper', {
-    paper: JSON.stringify(hardCodedPaper)
+    paper: JSON.stringify(paper),
+    questions: JSON.stringify(questions)
   });
-  // res.json();
 };

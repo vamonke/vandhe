@@ -1,37 +1,21 @@
+const Answer = require('../models/Answer');
 
 /**
- * GET /answers/:questionId
+ * GET /api/answers/:id
+ * Get answers by id.
+ */
+exports.getAnswersById = async (req, res) => {
+  const id = req.params.answerId;
+  const answer = await Answer.findById(id );
+  res.json(answer);
+};
+
+/**
+ * GET /api/questions/:questionId/answers
  * Get answers by question id.
  */
-exports.getAnswersByQuestionId = (req, res) => {
-  const questionId = req.params.questionId;
-  const hardCodedAnswers = [{
-    id: 'answer_id1',
-    text: 'answer1',
-    votes: 24,
-    user: {
-      name: 'name1',
-      id: 'user_id1'
-    },
-    questionId: questionId
-  }, {
-    id: 'answer_id2',
-    text: 'answer2',
-    votes: 24,
-    user: {
-      name: 'name2',
-      id: 'user_id2'
-    },
-    questionId: questionId
-  }, {
-    id: 'answer_id3',
-    text: 'answer3',
-    votes: 24,
-    user: {
-      name: 'name3',
-      id: 'user_id3'
-    },
-    questionId: questionId
-  }];
-  res.json({ answers: hardCodedAnswers });
+exports.getAnswersByQuestionId = async (req, res) => {
+  const question_id = req.params.questionId;
+  const answers = await Answer.find({ question_id });
+  res.json({ answers });
 };
