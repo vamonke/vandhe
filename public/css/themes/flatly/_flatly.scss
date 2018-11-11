@@ -20,8 +20,8 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|
 
 .bg-dark {
   background: {
-    image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,0));
-    color: rgba(0,0,0,0) !important;
+    // image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,0));
+    color: rgba(255,255,255,1) !important;
   }
 
   &.navbar-dark .navbar-nav {
@@ -34,14 +34,14 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Montserrat:400,600,800|
 }
 .navbar-light {
   .navbar-brand{
-    color: #fff;
+    color: #000;
     &:hover{
       color: $secondary;
     }
   }
 }
 .nav-link{
-  color: #fff !important;
+  color: #000 !important;
 }
 // Buttons =====================================================================
 
@@ -255,9 +255,7 @@ select {
   display: block;
   margin-bottom: 30px;
 }
-// .form-control{
-//   margin: 20px 0px;
-// }
+
 .progress{
   margin-bottom: 30px;
 }
@@ -275,15 +273,15 @@ input[type=radio]:checked + label {
 }
 .paper-container{
   width: 100vw;
-  height: 100vh;
-  position: absolute;
+  height: 95vh;
+  // position: absolute;
   top: 0;
   left: 0;
 }
 #sidebar{
   background-color: #FFC008;
   padding: 30px;
-  position: relative;
+  // position: relative;
 }
 .sidebar-row {
   height:100%;
