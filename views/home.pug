@@ -46,6 +46,7 @@ block content
                         | 2
           input.btn.btn-warning(type='submit', value='Submit')
         script(src='js/home.js')
+        
       else
         form(method='GET', action='/papers', data-step='1')
           button.btn.btn-warning.button-outline.back-button(type='button') Back
@@ -94,7 +95,7 @@ block content
             fieldset
               legend
                 | What course are you from?
-              .row
+              .row#select-course-home
                 .col-6
                   input#course-eee(type='radio', name='course', value='EEE')
                   label.btn.btn-outline-light.school-button(for='course-eee') EEE
