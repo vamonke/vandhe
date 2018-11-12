@@ -4,6 +4,7 @@ block content
   .index
     .home-form
       if user 
+        //- p= user
         form(method='GET', action='/papers')
           //- button.btn.btn-warning.button-outline.back-button(type='button') Back
           section
@@ -12,6 +13,8 @@ block content
             fieldset
               legend
                 | What paper are you looking for?
+              input(type='hidden', name='school', value='EEE')
+              input(type='hidden', name='course', value='IEM')
               .row
                 .col-12
                   .form-group
@@ -21,7 +24,7 @@ block content
               .row
                 .col-6
                   .form-group
-                    select.form-control
+                    select.form-control(name='year')
                       option(disabled='disabled', selected='')
                         | Year
                       option
@@ -34,7 +37,7 @@ block content
                         | 2015
                 .col-6
                   .form-group
-                    select.form-control
+                    select.form-control(name='sem')
                       option(disabled='disabled', selected='')
                         | Semester
                       option
@@ -42,6 +45,7 @@ block content
                       option
                         | 2
           input.btn.btn-warning(type='submit', value='Submit')
+        script(src='js/home.js')
       else
         form(method='GET', action='/papers', data-step='1')
           button.btn.btn-warning.button-outline.back-button(type='button') Back
@@ -137,4 +141,4 @@ block content
             a(href='#') here!
           input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
 
-  script(src='js/form.js')
+        script(src='js/form.js')
