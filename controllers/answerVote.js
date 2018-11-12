@@ -1,20 +1,30 @@
 const AnswerVote = require('../models/AnswerVote');
 
 /**
- * POST /api/answer/vote
+ * POST /api/answer/toggleVote
  * Voting of answer by user
- * value: 1 for upvote, 0 for unvote, -1 for downvote
  */
 exports.vote = async (req, res) => {
   let selector = {
-    user_id: req.body.user_id,
-    answer_id: req.body.answer_id
+    user_id: req.user._id,
+    answer_id: req.body.answer_id,
   };
+  // console.log(selector);
   const value = parseInt(req.body.value);
-  if (value === 0) {
-    await AnswerVote.remove(selector);
-  } else if (value === 1 || value === -1) {
-    await AnswerVote.updateOne(selector, { value }, { upsert: true });
+  let answerVote = await AnswerVote.findOne(selector);
+  let result = null;
+  if (answerVote) {
+    if (answerVote.value === value) {
+      await answerVote.remove();
+      result = { value: 0 };
+    } else {
+      answerVote.value = value;
+      await answerVote.save();
+      result = { value };
+    }
+  } else {
+    await AnswerVote.create(Object.assign(selector, { value }));
+    result = { value };
   }
-  return res.status(204).end();
+  res.send(result);
 };

@@ -1,0 +1,52 @@
+$blue: #03a9f4;
+$red: #f46303;
+
+.question-bg {
+  background-color: #EEE;
+}
+
+.answer-card {
+  position: relative;
+  overflow: auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+  margin: {
+    top: 20px;
+    bottom: 20px;
+  }  
+  .votes {
+    float: left;
+    text-align: center;
+    width: 6rem;
+    margin-left: -20px;
+    .upvote, .downvote {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 1.5em;
+    }
+  }
+  &[data-user-vote='1'] {  
+    .upvote {
+      color: $blue;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+  &[data-user-vote='-1'] {
+    .downvote {
+      color: $red;
+      &:hover {
+        color: $red;
+      }
+    }
+  }
+  .details {
+    margin-top: 30px;
+    color: #666;
+    font-size: 1em;
+    text-align: right;
+  }
+}
