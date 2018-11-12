@@ -72,10 +72,11 @@ async function addCourseFromJSON() {
     const newPaper = (({ year, semester }) => ({ year, semester }))(paper);
     const paper_id = await populateTable(Paper, [newPaper], 'Papers', { module_id });
     for (const question of paper.questions) {
-      const newQuestion = (({ questionNo, text }) => ({ questionNo, text }))(question);
+      const newQuestion = (({ questionNo, text, figure }) => ({ questionNo, text, figure }))(question);
       const parent_id = await populateTable(Question, [newQuestion], 'Questions', { paper_id });
       for (const questionPart of question.parts) {
-        const newQuestionPart = (({ questionNo, text }) => ({ questionNo, text }))(questionPart);
+        const newQuestionPart = (({ questionNo, text, figure }) => ({ questionNo, text, figure }))(questionPart);
+        console.log(newQuestionPart.figure);
         await populateTable(QuestionPart, [newQuestionPart], 'Question parts', { parent_id });
       }
     }
