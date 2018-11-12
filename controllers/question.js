@@ -9,11 +9,11 @@ const moment = require('moment');
  * Get question by id and its answers
  */
 exports.getQuestionById = async (req, res) => {
-  const question_id = req.params.questionId;
+  const question_id = req.query.questionId;
   let question = await Question.findById(question_id).exec();
-  
+
   // Convert MongoDB document to JSON object
-  question = question.toObject();  
+  question = question.toObject();
 
   let answers = await Answer
     .find({ question_id })
@@ -64,17 +64,17 @@ exports.getQuestionById = async (req, res) => {
     answerObj = answer.toObject();
 
     // Add vote count
-    const answerVote = answerVotes.find(vote => 
+    const answerVote = answerVotes.find(vote =>
       (vote._id.toString() == answerObj._id.toString())
     );
     answerObj.votes = answerVote ? answerVote.voteCount : 0;
-    
+
     // Add user vote
     const userVote = userVotes.find(vote =>
       (vote.answer_id.toString() == answerObj._id.toString())
     );
     answerObj.userVote = userVote ? userVote.value : 0;
-    
+
     // Parse date
     answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
 
