@@ -3,11 +3,11 @@ $(document).ready(function() {
     $this = $(this);
     $answerCard = $this.parents('.answer-card');
     const value = $this.attr('class') === 'upvote' ? 1 : -1;
-    const answer_id = $answerCard.data('answerId');
+    const post_id = $answerCard.data('answerId');
     $.ajax({
       type: "POST",
-      url: "/api/answer/toggleVote",
-      data: { answer_id, value },
+      url: "/api/vote/toggleVote",
+      data: { post_id, value },
       success: function(data, status, xhr) {
         const newUserVote = data.value;
         const oldUserVote = $answerCard.attr('data-user-vote');

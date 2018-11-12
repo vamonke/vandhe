@@ -1,6 +1,6 @@
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
-const AnswerVote = require('../models/AnswerVote');
+const Vote = require('../models/Vote');
 
 const moment = require('moment');
 
@@ -16,7 +16,7 @@ exports.getQuestionById = async (req, res) => {
     .populate('user_id', '_id email')
     .exec();
 
-  const answerVotes = await AnswerVote.aggregate([
+  const votes = await Vote.aggregate([
     { $match: {
       answer_id: { $in: answers.map(ans => ans._id) }
     }},
@@ -31,27 +31,30 @@ exports.getQuestionById = async (req, res) => {
     }}
   ]);
 
-  const userVotes = await AnswerVote.aggregate([
-    { $match: {
-      answer_id: { $in: answers.map(ans => ans._id) },
-      user_id: { $eq: req.user._id }
-    }},
-    { $project: {
-      _id: 0,
-      answer_id: 1,
-      value: 1,
-    }}
-  ]);
+  let userVotes = [];
+  if (req.user) {
+    userVotes = await Vote.aggregate([
+      { $match: {
+        answer_id: { $in: answers.map(ans => ans._id) },
+        user_id: { $eq: req.user._id }
+      }},
+      { $project: {
+        _id: 0,
+        answer_id: 1,
+        value: 1,
+      }}
+    ]);
+  }
 
   answers = answers.map((answer) => {
     // Convert MongoDB document to JSON object
     answerObj = answer.toObject();
 
     // Add vote count
-    const answerVote = answerVotes.find(vote => 
+    const vote = votes.find(vote => 
       (vote._id.toString() == answerObj._id.toString())
     );
-    answerObj.votes = answerVote ? answerVote.voteCount : 0;
+    answerObj.votes = vote ? vote.voteCount : 0;
     
     // Add user vote
     const userVote = userVotes.find(vote =>
