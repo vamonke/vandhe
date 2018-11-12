@@ -16,22 +16,53 @@ exports.getQuestionById = async (req, res) => {
     .populate('user_id', '_id email')
     .exec();
 
-  const voteCounts = await AnswerVote.aggregate([
+  const answerVotes = await AnswerVote.aggregate([
+    { $match: {
+      answer_id: { $in: answers.map(ans => ans._id) }
+    }},
+    { $project: {
+      answer_id: 1,
+      value: 1,
+      user_id: 1,
+    }},
     { $group: {
       _id: '$answer_id',
-      value: { $sum: 1 },
+      voteCount: { $sum: '$value' },
     }}
   ]);
+
+  const userVotes = await AnswerVote.aggregate([
+    { $match: {
+      answer_id: { $in: answers.map(ans => ans._id) },
+      user_id: { $eq: req.user._id }
+    }},
+    { $project: {
+      _id: 0,
+      answer_id: 1,
+      value: 1,
+    }}
+  ]);
+
   answers = answers.map((answer) => {
     // Convert MongoDB document to JSON object
     answerObj = answer.toObject();
+
     // Add vote count
-    const voteCount = voteCounts.find(count => 
-      (count._id.toString() == answerObj._id.toString())
+    const answerVote = answerVotes.find(vote => 
+      (vote._id.toString() == answerObj._id.toString())
     );
-    answerObj.votes = voteCount ? voteCount.value : 0;
+    answerObj.votes = answerVote ? answerVote.voteCount : 0;
+    
+    // Add user vote
+    const userVote = userVotes.find(vote =>
+      (vote.answer_id.toString() == answerObj._id.toString())
+    );
+    answerObj.userVote = userVote ? userVote.value : 0;
+    
     // Parse date
     answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
+
+    // console.log(answerObj);
     return answerObj;
   });
   res.render('question/question', {
