@@ -194,7 +194,13 @@ app.get('/api/question/:questionId/answers', answerController.getAnswersByQuesti
 */
 app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 
-app.get('/forums/:school/:course/:code', forumController.getForumQuestions)
+/***
+ * Forum routes
+*/
+app.get('/forums/:school/:course/:code', forumController.getForumThreads)
+// app.get('/forums/:thread_id', forumController.getThread)
+// app.post('/api/thread', forumController.createThread)
+// app.post('/api/reply', forumController.createReply)
 
 /**
  * API examples routes.
