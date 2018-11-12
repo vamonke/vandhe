@@ -10,7 +10,7 @@
             a(href="/questions?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + question._id)
               .card-body
                 h1.question-card-number= "Q" + question.questionNo
-                p= question.text
+                p= question.text || 'Click to view question'
                 //- p= params
     
     //- .row
