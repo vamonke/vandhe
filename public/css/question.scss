@@ -34,14 +34,18 @@ $red: #f46303;
   padding-bottom: 20px;
 }
 
-.vote-data {
-  .votes {
-    text-align: center;
-    .upvote, .downvote {
-      display: inline-block;
-      cursor: pointer;
-      font-size: 1.5em;
-    }
+.thread-header {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+}
+
+.votes {
+  text-align: center;
+  .upvote, .downvote {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.5em;
   }
   &[data-user-vote='1'] {  
     .upvote {
@@ -77,10 +81,11 @@ $red: #f46303;
     width: 6rem;
     margin-left: -20px;
   }
-  .details {
-    margin-top: 30px;
-    color: #666;
-    font-size: 1em;
-    text-align: right;
-  }
+}
+
+.details {
+  margin-top: 30px;
+  color: #666;
+  font-size: 1em;
+  text-align: right;
 }
