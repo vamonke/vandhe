@@ -175,11 +175,12 @@ app.get('/api/modules', moduleController.getModulesByCourse);
  * Paper routes
  */
 app.get('/papers', paperController.getPaperByCodeYearSem);
-
+app.post('/papers', paperController.postPaperByCodeYearSem);
 /***
  * Question routes
 */
 app.get('/questions', questionController.getQuestionById);
+app.get('/questions/part', questionController.getQuestionPartById);
 app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes

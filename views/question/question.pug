@@ -23,12 +23,15 @@ block content
                     h1=answer.votes
                     a.downvote ▼
                   p=answer.text
-                  .details=answer.user_id.email + ' | ' +  answer.createdAt
+                  .details 
+                    img.answer-gravatar(src=user.gravatar(60)) 
+                    span= (answer.user_id.profile.name || answer.user_id.email)  + ' | ' +  answer.createdAt
             else
-              div No answers yet
+              No answers yet
           if (user)
             include ../partials/answerForm
           else
-            p Login to answer question
-
-  script(src='js/paper.js')
+            p Login to answer question        
+  
+  
+  script(src='../../js/paper.js')
