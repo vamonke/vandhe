@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const questionPartSchema = new mongoose.Schema({
   questionNo: String,
   text: String,
+  figure: String,
   parent_id: { type: Schema.Types.ObjectId, ref: 'Question' },
 }, { timestamps: true });
 
