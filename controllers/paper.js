@@ -11,10 +11,15 @@ exports.getPaperByCodeYearSem = async (req, res) => {
   const year = req.query.year;
   const semester = req.query.sem;
   const mod = await Module.findOne({ code });
+  if (mod == null) {
+    return res.render('papers/paper', {
+      render: 'questions'
+    });
+  }
   const paper = await Paper.findOne({ year, semester, module_id: mod._id });
-  if (paper == null){
-    res.render('papers/paper', {
-      render: 'paper'
+  if (paper == null) {
+    return res.render('papers/paper', {
+      render: 'questions'
     });
   }
   let questions = await Question.find({ paper_id: paper._id }).exec();
@@ -25,7 +30,6 @@ exports.getPaperByCodeYearSem = async (req, res) => {
   for (let question of newQuestionsObject){
     question['questionParts'] = await QuestionPart.find({ parent_id: question._id });
   }
-
 
   res.render('papers/paper', {
     render: 'questions',
