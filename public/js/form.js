@@ -5,6 +5,7 @@ $(document).ready(function() {
     $(".button-primary").hide();
 
     $("input[type='radio']").change(function(e) {
+        $(this).addClass( "selectedRadio" );
         e.preventDefault();
         var step = $("form").data("step");
         var isValid = true;
@@ -25,12 +26,15 @@ $(document).ready(function() {
             $("section[data-step]").hide();
             $("section[data-step='" + step + "']").show();
             $("button.button-outline").show();
+            if(step === 2){
+
+            }
             if(step === 3){
               $(".login-link").hide();
               $(".button-primary").show();
-              console.log($("input[name=course]").val());
-              var course = $("input[name=course]").val();
-              $.get("/api/modules?course=IEM", function(data, status){
+              console.log($("input[name=course]:checked").val());
+              var course = $("input[name=course]:checked").val();
+              $.get("/api/modules?course=" + course, function(data, status){
                   console.log(data);
                   $('#modules').empty();
                   var template = `<option disabled selected>Select your module</option>`
@@ -51,6 +55,7 @@ $(document).ready(function() {
         $("section[data-step]").hide();
         $("section[data-step='" + step + "']").show();
         $(".button-primary").hide();
+
         if(step === 1) {
             $("button.button-outline").hide();
         }

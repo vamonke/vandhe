@@ -4,56 +4,30 @@ block content
   .paper-container
     .row.sidebar-row
       #sidebar.col-2
-        .form-group
-          label School of
-          select.form-control
-            option(selected='')
-              | EEE
-            option
-              | SCBE
-            option
-              | SCSE
-            option
-              | ADM
-            option
-              | NBS
-        .form-group
-          label Course
-          select.form-control
-            option(selected='')
-              | IEM
-            option
-              | EEE
-        .form-group
-          label Course Code
-          select.form-control
-            option(selected='')
-              | IM4717
-            option
-              | IM4483
-        .form-group
-          label Year
-          select.form-control
-            option(selected='')
-              | 2016
-            option
-              | 2015
-            option
-              | 2017
-            option
-              | 2018
-        .form-group
-          label Sem
-          select.form-control
-            option(selected='')
-              | 1
-            option
-              | 2
-        .form-group
-          button.btn.btn-outline-dark.full-btn(type='button') Update
+        form(method='GET', action='/papers')
+          .form-group
+            label School of
+            select#schoolOption.form-control(name='school')
+          .form-group
+            label Course
+            select#courseOption.form-control(name='course')
+          .form-group
+            label Course Code
+            select#moduleOption.form-control(name='code')
+          .form-group
+            label Year
+            select#yearOption.form-control(name='year')
+
+          .form-group
+            label Sem
+            select#semOption.form-control(name='sem')
+
+          .form-group
+          button#update-paper.btn.btn-outline-dark.full-btn(type='submit') Update
         #community-forum-button.form-group
           p.did-not-find Didn't find what you were looking for?
           p.head-over Head over to our community forums for more!
           button.btn.btn-outline-dark.full-btn(type='button') Community Forums
       .col-10
         include main-container
+  script(src='js/paper.js')
