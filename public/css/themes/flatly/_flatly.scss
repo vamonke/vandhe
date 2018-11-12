@@ -105,6 +105,18 @@ body {
   color: #23cb9d;
 }
 
+.btn-outline-dark {
+  background-color: #23cb9d;
+  color: white;
+  border: 1px solid #23cb9d;
+  margin-top: 20px;
+}
+
+.btn-outline-dark:hover {
+  color: #23cb9d;
+  border: 1px solid #23cb9d;
+  background-color: transparent;
+}
 
 
 // Typography ==================================================================
@@ -182,10 +194,15 @@ legend {
   }
 }
 
+
 // Forms =======================================================================
 
 .form-group {
   width: 100%;
+}
+
+label {
+  margin:0;
 }
 
 
@@ -279,6 +296,27 @@ legend {
   left: 0;
   z-index:0;
 }
+
+.box {
+  border: #f2f2f2 1px solid;
+  padding: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.box:hover {
+  border: #23cb9d 1px solid;
+  color: #23cb9d
+}
+
+#forums {
+  width: 80px;
+  position: absolute;
+  top: -10px;
+  left: 140px;
+}
+
+
 
 
 footer {
@@ -394,6 +432,7 @@ input[type=radio]:checked + label {
   background-color: white;
   border: 1px solid #f2f2f2;
   padding: 30px;
+  padding-top:80px;
   position: fixed;
   left: 0;
   top: 0;
@@ -410,18 +449,20 @@ input[type=radio]:checked + label {
   width: 100%;
 }
 
+
 #community-forum-button{
   position: absolute;
   bottom: 0;
   width: 80%;
 }
 .did-not-find{
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
   margin: auto;
 }
 .head-over{
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   margin: auto;
 }
