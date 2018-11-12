@@ -1,8 +1,8 @@
-const Module = require('./Module');
-const Paper = require('./Paper');
-const Question = require('./Question');
-const User = require('./User');
-const Answer = require('./Answer');
+const Module = require('../Module');
+const Paper = require('../Paper');
+const Question = require('../Question');
+const User = require('../User');
+const Answer = require('../Answer');
 const mongoose = require('mongoose');
 
 // console.log('Connecting to MongoDB..');
@@ -50,7 +50,7 @@ async function populateTable(model, data, tableName, parent) {
 async function populateDb() {
   const module_id = await populateTable(Module, modules, 'Modules');
   const paper_id = await populateTable(Paper, papers, 'Papers', { module_id });
-  const question_id = await populateTable(Question, questions, 'Questions', { paper_id });
+  const question_id = await populateTable(Question, questions, 'Questions', { paper_id, module_id });
   const randomUser = await User.findOne();
   await populateTable(Answer, answers, 'Answers', { question_id, user_id: randomUser.id });
   // console.log('Disconnecting from MongoDB..');

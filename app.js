@@ -151,7 +151,9 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
-
+app.get('/about', (req, res) => {
+  res.render('about');
+});
 app.get('/api/test', (req, res) => {
   console.log(req.params);
   res.json(req.params);
@@ -171,7 +173,7 @@ app.get('/papers', paperController.getPaperByCodeYearSem);
  * Question routes
 */
 app.get('/questions', questionController.getQuestionById);
-
+app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes
 */
