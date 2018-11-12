@@ -5,7 +5,7 @@ function appendNewAnswer(newAnswer, status, xhr) {
     .append(
       $('<div style="display: none;"></div>')
       .addClass("answer-card")
-      .attr({ 'data-user-vote': 0, 'data-answer-id': newAnswer._id })
+      .attr({ 'data-user-vote': 0, 'data-post-id': newAnswer._id })
       .append($('<div></div>').addClass("votes")
         .append($('<a></a>').addClass("upvote").text('▲'))
         .append($('<h1></h1>').text('0'))

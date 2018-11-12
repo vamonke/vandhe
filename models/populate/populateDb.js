@@ -60,7 +60,7 @@ async function populateTable(model, data, tableName, parent) {
   if (tableName == 'Modules')
     return created[0];
   else
-    return created[0].id;
+    return created[0]._id;
 }
 
 async function populateDb() {
@@ -100,11 +100,11 @@ async function addCourseFromJSON() {
 
   const courseObj = require('./IM1004.json');
   const newModule = (({ code, name, course }) => ({ code, name, course }))(courseObj);
-  const module = await populateTable(Module, [newModule], 'Modules');
+  const mod = await populateTable(Module, [newModule], 'Modules');
 
   for (const paper of courseObj.papers) {
     const newPaper = (({ year, semester }) => ({ year, semester }))(paper);
-    const paper_id = await populateTable(Paper, [newPaper], 'Papers', { module });
+    const paper_id = await populateTable(Paper, [newPaper], 'Papers', { module_id: mod._id });
     for (const question of paper.questions) {
       const newQuestion = (({ questionNo, text, figure }) => ({ questionNo, text, figure }))(question);
       const parent_id = await populateTable(Question, [newQuestion], 'Questions', { paper_id });

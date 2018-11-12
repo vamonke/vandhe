@@ -1,9 +1,12 @@
 form
-  script(src='../../js/answerForm.js').
+  script(src='/js/answerForm.js')
   hr
   h4 Your Answer
   .form-group
-    input(type='hidden' name='question_id' value=question._id)
+    if (question)
+      input(type='hidden' name='question_id' value=question._id)
+    else if (thread)
+      input(type='hidden' name='thread_id' value=thread._id)
     textarea.form-control(name='text', id='answer-text')
   .form-group
       .btn.btn-primary(id='submit-answer')

@@ -199,8 +199,8 @@ app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 /***
  * Forum routes
 */
-app.get('/forums/:school/:course/:code', forumController.getForumThreads)
-// app.get('/forums/:thread_id', forumController.getThread)
+app.get('/forums/:school/:course/:code', forumController.getForumThreads);
+app.get('/forums/:school/:course/:code/:thread_id', forumController.getThread);
 // app.post('/api/thread', forumController.createThread)
 // app.post('/api/reply', forumController.createReply)
 

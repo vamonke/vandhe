@@ -16,18 +16,22 @@
     if (threads.length)
       each thread in threads
         .row.thread-card.vote-data
-          //- p= JSON.stringify(thread)
           .col-1.center.votes
             a.upvote ▲
             .vote-count=0
             a.downvote ▼
           .col-8
-            a(href='/thread/' + thread._id)
+            a(href= mod.code + '/' + thread._id)
               h4= thread.title
             p.description= thread.description
           .col-1.center= thread.replyCount || 0
-          .col-2.center= thread.lastReplied || thread.createdAt
-    script(src='/js/paper.js')
+          .col-2.center
+            if thread.lastReplied
+              div Last replied
+              =thread.lastReplied
+            else
+              div Asked
+              =thread.createdAt
   else
     .no-paper
       h1 We could not find what you were looking for. Try searching again?
