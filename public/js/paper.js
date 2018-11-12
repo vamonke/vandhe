@@ -33,6 +33,27 @@ $(document).ready(function() {
   var selectedYear = getUrlVars()["year"];
   var selectedSem = getUrlVars()["sem"];
 
+  console.log(selectedSchool);
+
+  // FOR POST METHOD
+
+  if (selectedSchool == undefined){
+    selectedSchool = params.school;
+  }
+  if (selectedCourse == undefined){
+    selectedCourse = params.course;
+  }
+  if (selectedCode == undefined){
+    selectedCode = params.code;
+  }
+  if (selectedYear == undefined){
+    selectedYear = params.year;
+  }
+  if (selectedYear == undefined){
+    selectedSem = params.sem;
+  }
+
+  console.log(selectedSchool, selectedCourse, selectedYear, selectedCode, selectedSem)
   var forumLink = '/forums/' + selectedSchool + '/' + selectedCourse + '/' + selectedCode
   $('#forum-link').attr('href', forumLink);
 
@@ -135,6 +156,7 @@ $(document).ready(function() {
   $("#moduleOption").change(function(){
     var newModule = $('#moduleOption').val();
   });
+
 
 
 

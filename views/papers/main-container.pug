@@ -1,24 +1,63 @@
 .container#paper-main-container
-  if (paper)
-    .row
-      .col-12
-        h1 What question are you looking for?
-    each question in questions
-      .row.question-card-row
+  
+  if (render == 'questions')
+    if (paper)
+      .row
         .col-12
-          .card
-            a(href="/questions?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + question._id)
-              .card-body
-                h1.question-card-number= "Q" + question.questionNo
-                p= question.text || 'Click to view question'
-                //- p= params
-    
-    //- .row
-    //-   p= questions
-  else
-    .no-paper
-      h1 We could not find what you were looking for. Try searching again?
-      h1 OR
-      h1 Ask a question!
-      a(href="#")
-        input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')
+          h1 What question are you looking for?
+      each question in questions
+        .row.question-card-row
+          .col-12
+            .card
+              if (question.questionParts == [])
+                a(href="/questions?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + question._id)
+                  .card-body
+                    h1.question-card-number= "Q" + question.questionNo
+                    p= question.text || 'Click to view question'
+                    p= JSON.stringify(question)
+              else 
+                form(method='POST', action='/papers')
+                  input(type='hidden', name='school', value= params.school)
+                  input(type='hidden', name='course', value= params.course)
+                  input(type='hidden', name='code', value= params.code)
+                  input(type='hidden', name='year', value= params.year)
+                  input(type='hidden', name='sem', value= params.sem)
+                  input(type='hidden', name='questionId', value= question._id)
+                  input(type='hidden', name='questionParts', value= question.questionParts)
+                  button.card-body(type='submit')
+                    h1.question-card-number= "Q" + question.questionNo
+                    p= question.text || 'Click to view question'
+      
+    else
+      .no-paper
+        h1 We could not find what you were looking for. Try searching again?
+        h1 OR
+        h1 Ask a question!
+        a(href="#")
+          input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')
+  else if (render == 'questionParts')
+    if (paper)
+      .row
+        .col-12
+          h1 What question are you looking for?
+      script(type="text/javascript"). 
+        var params = !{JSON.stringify(params)};
+      each question in questions
+        if(question._id == params.questionId)
+          each part in question.questionParts
+            .row.question-card-row
+              .col-12
+                .card
+                  a(href="/questions/part?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + part._id)
+                    .card-body
+                      h1.question-card-number= part.questionNo
+                      p= part.text || 'Click to view question'
+                      //- p= JSON.stringify(question)
+                  
+    else
+      .no-paper
+        h1 We could not find what you were looking for. Try searching again?
+        h1 OR
+        h1 Ask a question!
+        a(href="#")
+          input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')
