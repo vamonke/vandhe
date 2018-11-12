@@ -1,16 +1,16 @@
 .container#paper-main-container
-  if (paper)
+  if (questions)
     .row
       .col-12
         h1 What question are you looking for?
     each question in questions
-      a(href='/questions/' + question._id)
-        .row.question-card-row
-          .col-12
-            .card
-              .card-body
-                h1.question-card-number= "Q" + question.questionNo
-                p= question.text
+    
+      .row.question-card-row
+        .col-12
+          .card
+            .card-body
+              h1.question-card-number= "Q" + question.id
+              p= question.text
     
     .row
       p= questions

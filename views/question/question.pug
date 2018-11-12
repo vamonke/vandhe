@@ -7,23 +7,24 @@ block content
       .col-2
         include ../partials/pyp-sidebar
       .col-10
-        h1 What question are you looking for?
-        .question-card-row.question-bg
-          .card.question-bg
-            .card-body
-              h1.question-card-number= "Q" + question.questionNo
-              p= question.text
-        if (answers.length)
-          for answer in answers
-            .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
-              .votes
-                a.upvote ▲
-                h1=answer.votes
-                a.downvote ▼
-              p=answer.text
-              .details=answer.user_id.email + ' | ' +  answer.createdAt
-        else
-          .div No answers yet
+        .container#paper-main-container
+          h1 What question are you looking for?
+          .question-card-row.question-bg
+            .card.question-bg
+              .card-body
+                h1.question-card-number= "Q" + question.questionNo
+                p= question.text
+          if (answers.length)
+            for answer in answers
+              .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
+                .votes
+                  a.upvote ▲
+                  h1=answer.votes
+                  a.downvote ▼
+                p=answer.text
+                .details=answer.user_id.email + ' | ' +  answer.createdAt
+          else
+            .div No answers yet
           
           
   script(src='js/paper.js')

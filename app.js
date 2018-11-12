@@ -39,6 +39,7 @@ const moduleController = require('./controllers/module');
 const paperController = require('./controllers/paper');
 const questionController = require('./controllers/question');
 const answerController = require('./controllers/answer');
+const forumController = require('./controllers/forum');
 const voteController = require('./controllers/vote');
 
 /**
@@ -181,7 +182,7 @@ app.get('/api/question/:questionId/answers', answerController.getAnswersByQuesti
 */
 app.post('/api/vote/toggleVote', voteController.toggleVote);
 
-
+app.get('/forums/:school/:course/:code', forumController.getForumQuestions)
 
 /**
  * API examples routes.
