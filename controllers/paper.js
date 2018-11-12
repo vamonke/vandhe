@@ -20,6 +20,7 @@ exports.getPaperByCodeYearSem = async (req, res) => {
   const questions = await Question.find({ paper_id: paper._id });
   res.render('papers/paper', {
     paper: JSON.stringify(paper),
-    questions: questions
+    questions: questions,
+    params: req.query
   });
 };

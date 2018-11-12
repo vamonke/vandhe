@@ -4,41 +4,44 @@ block content
   .index
     .home-form
       if user 
-        form(method='POST', action='.', data-step='1')
-          button.btn.btn-warning.button-outline.back-button(type='button') Back
-          section(data-step='1')
-            .progress
-              .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
+        form(method='GET', action='/papers')
+          //- button.btn.btn-warning.button-outline.back-button(type='button') Back
+          section
+            //- .progress
+            //-   .progress-bar.bg-warning(role='progressbar', style='width: 67%', aria-valuenow='67', aria-valuemin='0', aria-valuemax='100')
             fieldset
               legend
                 | What paper are you looking for?
               .row
                 .col-12
-                  select.form-control
-                    option(disabled='', selected='')
-                      | Select Module
+                  .form-group
+                    select.form-control#modules(name='code')
+                      option(disabled='', selected='')
+                        | Select Module
               .row
                 .col-6
-                  select.form-control
-                    option(disabled='disabled', selected='')
-                      | Year
-                    option
-                      | 2018
-                    option
-                      | 2017
-                    option
-                      | 2016
-                    option
-                      | 2015
+                  .form-group
+                    select.form-control
+                      option(disabled='disabled', selected='')
+                        | Year
+                      option
+                        | 2018
+                      option
+                        | 2017
+                      option
+                        | 2016
+                      option
+                        | 2015
                 .col-6
-                  select.form-control
-                    option(disabled='disabled', selected='')
-                      | Semester
-                    option
-                      | 1
-                    option
-                      | 2
-          input.btn.btn-warning.button.button-primary(type='submit', value='Submit')
+                  .form-group
+                    select.form-control
+                      option(disabled='disabled', selected='')
+                        | Semester
+                      option
+                        | 1
+                      option
+                        | 2
+          input.btn.btn-warning(type='submit', value='Submit')
       else
         form(method='GET', action='/papers', data-step='1')
           button.btn.btn-warning.button-outline.back-button(type='button') Back

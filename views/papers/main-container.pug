@@ -7,10 +7,11 @@
       .row.question-card-row
         .col-12
           .card
-            a(href='/questions/' + question.id)
+            a(href="/questions?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo)
               .card-body
                 h1.question-card-number= "Q" + question.questionNo
                 p= question.text
+                //- p= params
     
     .row
       p= questions

@@ -1,0 +1,26 @@
+#sidebar.col-2
+  form(method='GET', action='/papers')
+    .form-group
+      label School of
+      select#schoolOption.form-control(name='school')
+    .form-group
+      label Course
+      select#courseOption.form-control(name='course')
+    .form-group
+      label Course Code
+      select#moduleOption.form-control(name='code')
+    .form-group
+      label Year
+      select#yearOption.form-control(name='year')
+
+    .form-group
+      label Sem
+      select#semOption.form-control(name='sem')
+
+    .form-group
+    button#update-paper.btn.btn-outline-dark.full-btn(type='submit') Update
+  #community-forum-button.form-group
+    p.did-not-find Didn't find what you were looking for?
+    p.head-over Head over to our community forums for more!
+    button.btn.btn-outline-dark.full-btn(type='button') Community Forums
+    

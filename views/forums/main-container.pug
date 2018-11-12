@@ -4,12 +4,13 @@
       .col-12
         h1 What question are you looking for?
     each question in questions
-      .row.question-card-row
-        .col-12
-          .card
-            .card-body
-              h1.question-card-number= "Q" + question.questionNo
-              p= question.text
+      a(href='/questions/' + question._id)
+        .row.question-card-row
+          .col-12
+            .card
+              .card-body
+                h1.question-card-number= "Q" + question.questionNo
+                p= question.text
     
     .row
       p= questions
