@@ -14,11 +14,12 @@ exports.getPaperByCodeYearSem = async (req, res) => {
   const paper = await Paper.findOne({ year, semester, module_id: mod._id });
   if (paper == null){
     res.render('papers/paper', {
-
+      render: 'paper'
     });
   }
   const questions = await Question.find({ paper_id: paper._id });
   res.render('papers/paper', {
+    render: 'paper',
     paper: JSON.stringify(paper),
     questions: questions,
     params: req.query,

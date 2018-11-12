@@ -1,23 +1,46 @@
 .container#paper-main-container
-  if (questions)
-    .row
-      .col-12
-        h1 What question are you looking for?
-    each question in questions
+  if (render == 'question')
+    script(src='../../js/vote.js').
+
+    h1 What question are you looking for?
+    .question-card-row.question-bg
+      .card.question-bg
+        .card-body
+          h1.question-card-number= "Q" + question.questionNo
+          p= question.text
+    if (answers.length)
+      for answer in answers
+        .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
+          .votes
+            a.upvote ▲
+            h1=answer.votes
+            a.downvote ▼
+          p=answer.text
+          .details=answer.user_id.email + ' | ' +  answer.createdAt
+    else
+      .div No answers yet
+
+  script(src='/js/paper.js')
     
-      .row.question-card-row
+  if (render == 'forum')
+    if (questions)
+      .row
         .col-12
-          .card
-            .card-body
-              h1.question-card-number= "Q" + question.id
-              p= question.text
+          h1 What question are you looking for?
+      each question in questions
+        .row.question-card-row
+          .col-12
+            .card
+              .card-body
+                a(href="/questions/forum?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&questionId=" + question._id)
+                  h1.question-card-number= "Q" + question.questionNo
+                  p= question.text
+      
     
-    .row
-      p= questions
-  else
-    .no-paper
-      h1 We could not find what you were looking for. Try searching again?
-      h1 OR
-      h1 Ask a question!
-      a(href="#")
-        input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')
+    else
+      .no-paper
+        h1 We could not find what you were looking for. Try searching again?
+        h1 OR
+        h1 Ask a question!
+        a(href="#")
+          input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')
