@@ -116,10 +116,12 @@ app.use((req, res, next) => {
     && req.path !== '/signup'
     && !req.path.match(/^\/auth/)
     && !req.path.match(/\./)) {
-    req.session.returnTo = req.originalUrl;
+    // req.session.returnTo = req.originalUrl;
+    req.session.returnTo = "/";
   } else if (req.user
     && (req.path === '/account' || req.path.match(/^\/api/))) {
-    req.session.returnTo = req.originalUrl;
+    // req.session.returnTo = req.originalUrl;
+    req.session.returnTo = "/";
   }
   next();
 });
