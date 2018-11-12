@@ -16,16 +16,25 @@ $(document).ready(function() {
   var schools = ['SCBE', 'MAE', 'NBS', 'ADM', 'SCSE', 'MSE', 'SPMS', 'HSS', 'EEE'];
 
   var courses = {
-    'EEE': ['EEE', 'IEM']
+    'SCBE': ['CBE', 'BIE'],
+    'MAE': ['ME', 'AERO'],
+    'ADM': ['ART'],
+    'SCSE': ['CS', 'CE'],
+    'EEE': ['EEE', 'IEM'],
+    'NBS': ['BUS', 'ACC']
   }
 
   var year = [ 2015, 2016, 2017, 2018];
   var sem = [1, 2];
+
   var selectedSchool = getUrlVars()["school"];
   var selectedCourse = getUrlVars()["course"];
   var selectedCode = getUrlVars()["code"];
   var selectedYear = getUrlVars()["year"];
   var selectedSem = getUrlVars()["sem"];
+
+  var forumLink = '/forums/' + selectedSchool + '/' + selectedCourse + '/' + selectedCode
+  $('#forum-link').attr('href', forumLink);
 
   // preload sidebar with the correct options
   for (idx in schools) {
@@ -88,6 +97,46 @@ $(document).ready(function() {
       $("#semOption").append(semOption);
     }
   }
+
+  $('#schoolOption').change(function() {
+    var newSchool = $('#schoolOption').val();
+    console.log(newSchool);
+
+    var currentSchoolCourse = courses[newSchool];
+    $('#courseOption').empty();
+    $('#courseOption').append(`<option disabled selected>Select Course</option>`);
+    $('#moduleOption').empty();
+    $('#moduleOption').append(`<option disabled selected>Select Module</option>`);
+    for (idx in currentSchoolCourse){
+      var courseOption = `<option>`+ currentSchoolCourse[idx] + `</option>`;
+      $("#courseOption").append(courseOption);
+    }
+    // $('a.target').attr('href', newurl);
+  });
+
+  $('#courseOption').change(function(){
+    var newCourse = $('#courseOption').val();
+
+    $('#moduleOption').empty();
+    $('#moduleOption').append(`<option disabled selected>Select Module</option>`);
+
+    $.get("/api/modules?course=" + newCourse, function(data, status){
+      console.log(data);
+      $('#modules').empty();
+      var template = `<option disabled selected>Select your module</option>`
+      $('#modules').append(template);
+      data.modules.forEach((module) => {
+        var template = `<option value=` + module.code + `>` + module.code + ` - `+ module.name + `</option>`
+        $('#moduleOption').append(template);
+      });
+    });
+  });
+
+  $("#moduleOption").change(function(){
+    var newModule = $('#moduleOption').val();
+  });
+
+
 
 
 });

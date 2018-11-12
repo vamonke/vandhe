@@ -21,6 +21,6 @@ exports.getPaperByCodeYearSem = async (req, res) => {
   res.render('papers/paper', {
     paper: JSON.stringify(paper),
     questions: questions,
-    params: req.query
+    params: req.query,
   });
 };
