@@ -39,7 +39,7 @@ const moduleController = require('./controllers/module');
 const paperController = require('./controllers/paper');
 const questionController = require('./controllers/question');
 const answerController = require('./controllers/answer');
-const answerVoteController = require('./controllers/answerVote');
+const voteController = require('./controllers/vote');
 
 /**
  * API keys and Passport configuration.
@@ -177,9 +177,9 @@ app.get('/api/answers/:answerId', answerController.getAnswersById);
 app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);
 
 /***
- * Answer Vote routes
+ * Vote routes
 */
-app.post('/api/answer/toggleVote', answerVoteController.vote);
+app.post('/api/vote/toggleVote', voteController.toggleVote);
 
 
 
