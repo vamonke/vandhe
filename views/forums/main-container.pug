@@ -1,50 +1,37 @@
 .container#paper-main-container
-  if (render == 'question')
-    script(src='../../js/vote.js').
-
-    h1 What question are you looking for?
-    .question-card-row.question-bg
-      .card.question-bg
-        .card-body
-          h1.question-card-number= "Q" + question.questionNo
-          p= question.text
-    .answers-container
-      if (answers.length)
-        for answer in answers
-          .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
-            .votes
-              a.upvote ▲
-              h1=answer.votes
-              a.downvote ▼
-            p=answer.text
-            //- p= answerJSON
-            .details= (answer.user_id.profile.name || answer.user_id.email)  + ' | ' +  answer.createdAt
-      else
-        div No answers yet
-    if (user)
-      include ../partials/answerForm
-    else
-      p Login to answer question
-
+  if (mod)
+    .row    
+      .col-12
+        h1= mod.code + ' ' + mod.name
+        a(id='ask-question')
+          .btn.btn-primary
+            | Ask Question
+    .row
+      .col-12
+        hr
+      .col-1.center Score
+      .col-8 Topic
+      .col-1.center Replies
+      .col-2.center Activity
+    if (threads.length)
+      each thread in threads
+        .row.thread-card.vote-data
+          //- p= JSON.stringify(thread)
+          .col-1.center.votes
+            a.upvote ▲
+            .vote-count=0
+            a.downvote ▼
+          .col-8
+            a(href='/thread/' + thread._id)
+              h4= thread.title
+            p.description= thread.description
+          .col-1.center= thread.replyCount || 0
+          .col-2.center= thread.lastReplied || thread.createdAt
     script(src='/js/paper.js')
-    
-  if (render == 'forum')
-    if (questions)
-      .row
-        .col-12
-          h1 What question are you looking for?
-      each question in questions
-        .row.question-card-row
-          .col-12
-            .card
-              .card-body
-                a(href="/questions/forum?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&questionId=" + question._id)
-                  h1.question-card-number= "Q" + question.questionNo
-                  p= question.text
-    else
-      .no-paper
-        h1 We could not find what you were looking for. Try searching again?
-        h1 OR
-        h1 Ask a question!
-        a(href="#")
-          input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')
+  else
+    .no-paper
+      h1 We could not find what you were looking for. Try searching again?
+      h1 OR
+      h1 Ask a question!
+      a(href="#")
+        input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')
