@@ -1,6 +1,7 @@
 const Module = require('../models/Module');
 const Thread = require('../models/Thread');
 const Reply = require('../models/Reply');
+const Vote = require('../models/Vote');
 
 const moment = require('moment');
 
@@ -19,13 +20,6 @@ async function getThreadReplyCounts(thread_ids) {
       lastReplied: { $max: '$createdAt' }
     }}
   ]);
-  // let replyCount = 0;
-  // let lastReplied = null;
-  // if (count.length) {
-  //   replyCount = count[0].replyCount;
-  //   lastReplied = count[0].lastReplied;
-  // }
-  // return { replyCount, lastReplied };
   return counts;
 }
 
@@ -49,10 +43,10 @@ exports.getForumThreads = async (req, res) => {
       console.log(countObj);
       threadObj.replyCount = countObj.replyCount;
       const lastReplied = moment(countObj.lastReplied).fromNow();
-      threadObj.lastReplied = 'Last replied ' + lastReplied;
+      threadObj.lastReplied = lastReplied;
     } else {
       const createdAt = moment(threadObj.createdAt).fromNow();
-      threadObj.createdAt = 'Asked ' + createdAt;
+      threadObj.createdAt = createdAt;
     }
     return threadObj;
   });
@@ -64,4 +58,91 @@ exports.getForumThreads = async (req, res) => {
   });
 };
 
-// getThread
+exports.getThread = async (req, res) => {
+  const thread_id = req.params.thread_id;
+  let thread = await Thread.findById(thread_id).populate('user_id', '_id email profile').exec();
+
+  // Convert MongoDB document to JSON object
+  thread = thread.toObject();
+
+  let replies = await Reply
+    .find({ thread_id })
+    .populate('user_id', '_id email profile')
+    .exec();
+
+  let post_ids = replies.map(ans => ans._id.toString());
+  post_ids.push(thread_id);
+
+  const voteCounts = await Vote.aggregate([
+    { $match: {
+      post_id: { $in: post_ids }
+    }},
+    { $project: {
+      post_id: 1,
+      value: 1,
+      user_id: 1,
+    }},
+    { $group: {
+      _id: '$post_id',
+      voteCount: { $sum: '$value' },
+    }}
+  ]);
+
+  let userVotes = [];
+  post_ids.push(thread_id);
+
+  if (req.user) {
+    userVotes = await Vote.aggregate([
+      { $match: {
+        post_id: { $in: post_ids },
+        user_id: { $eq: req.user._id }
+      }},
+      { $project: {
+        _id: 0,
+        post_id: 1,
+        value: 1,
+      }}
+    ]);
+  }
+
+  // Add thread user vote
+  const threadUserVote = userVotes.find(userVote =>
+    (userVote.post_id.toString() == thread_id)
+  );
+  thread.userVote = threadUserVote ? threadUserVote.value : 0;
+  thread.createdAt = moment(thread.createdAt).fromNow();
+  
+
+  const threadVoteCount = voteCounts.find(vote =>
+    (vote._id.toString() == thread._id.toString())
+  );
+  thread.votes = threadVoteCount ? threadVoteCount.voteCount : 0;
+
+
+  replies = replies.map((reply) => {
+    // Convert MongoDB document to JSON object
+    replyObj = reply.toObject();
+
+    // Add vote count
+    const replyVote = voteCounts.find(vote =>
+      (vote._id.toString() == replyObj._id.toString())
+    );
+    replyObj.votes = replyVote ? replyVote.voteCount : 0;
+
+    // Add user vote
+    const userVote = userVotes.find(vote =>
+      (vote.post_id.toString() == replyObj._id.toString())
+    );
+    replyObj.userVote = userVote ? userVote.value : 0;
+
+    // Parse date
+    replyObj.createdAt = moment(replyObj.createdAt).fromNow();
+
+    return replyObj;
+  });
+  res.render('thread/thread', {
+    render: 'thread',
+    thread: thread,
+    replies: replies.sort((a,b) => b.votes - a.votes),
+  });
+}
