@@ -9,11 +9,11 @@ const moment = require('moment');
  * Get question by id and its answers
  */
 exports.getQuestionById = async (req, res) => {
-  const question_id = req.params.questionId;
+  const question_id = req.query.questionId;
   let question = await Question.findById(question_id).exec();
-  
+
   // Convert MongoDB document to JSON object
-  question = question.toObject();  
+  question = question.toObject();
 
   let answers = await Answer
     .find({ question_id })
@@ -63,25 +63,24 @@ exports.getQuestionById = async (req, res) => {
     // Convert MongoDB document to JSON object
     answerObj = answer.toObject();
 
-    // Add answer vote count
-    const answerVote = answerVotes.find(vote => 
+    // Add vote count
+    const answerVote = answerVotes.find(vote =>
       (vote._id.toString() == answerObj._id.toString())
     );
     answerObj.votes = answerVote ? answerVote.voteCount : 0;
 
-    // Add answer user vote
-    const answerUserVote = userVotes.find(vote =>
-      (vote.post_id.toString() == answerObj._id.toString())
+    // Add user vote
+    const userVote = userVotes.find(vote =>
+      (vote.answer_id.toString() == answerObj._id.toString())
     );
-    answerObj.userVote = answerUserVote ? answerUserVote.value : 0;
-    
+    answerObj.userVote = userVote ? userVote.value : 0;
+
     // Parse date
     answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
 
     // console.log(answerObj);
     return answerObj;
   });
-  // console.log(answers);
   res.render('question/question', {
     question: question,
     answers: answers.sort((a,b) => b.votes - a.votes)

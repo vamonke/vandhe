@@ -334,4 +334,13 @@ input[type=radio]:checked + label {
   background-color: white;
   color: black;
 }
-// input[type="radio"]:checked+label{ font-weight: bold; } 
+// input[type="radio"]:checked+label{ font-weight: bold; }
+.card{
+  a{
+    color: black;
+    &:hover{
+      text-decoration: none;
+    }
+
+  }
+}

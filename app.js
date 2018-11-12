@@ -39,6 +39,7 @@ const moduleController = require('./controllers/module');
 const paperController = require('./controllers/paper');
 const questionController = require('./controllers/question');
 const answerController = require('./controllers/answer');
+const forumController = require('./controllers/forum');
 const voteController = require('./controllers/vote');
 
 /**
@@ -129,6 +130,7 @@ app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/d
 app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
 app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
 
+
 /**
  * Primary app routes.
  */
@@ -168,7 +170,7 @@ app.get('/papers', paperController.getPaperByCodeYearSem);
 /***
  * Question routes
 */
-app.get('/questions/:questionId', questionController.getQuestionById);
+app.get('/questions', questionController.getQuestionById);
 
 /***
  * Answer routes
@@ -181,7 +183,7 @@ app.get('/api/question/:questionId/answers', answerController.getAnswersByQuesti
 */
 app.post('/api/vote/toggleVote', voteController.toggleVote);
 
-
+app.get('/forums/:school/:course/:code', forumController.getForumQuestions)
 
 /**
  * API examples routes.
@@ -263,7 +265,10 @@ app.get('/auth/pinterest', passport.authorize('pinterest', { scope: 'read_public
 app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRedirect: '/login' }), (req, res) => {
   res.redirect('/api/pinterest');
 });
-
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', function(req, res){
+  res.render('404');
+});
 /**
  * Error Handler.
  */

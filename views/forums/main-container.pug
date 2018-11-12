@@ -1,14 +1,15 @@
 .container#paper-main-container
-  if (paper)
+  if (questions)
     .row
       .col-12
         h1 What question are you looking for?
     each question in questions
+    
       .row.question-card-row
         .col-12
           .card
             .card-body
-              h1.question-card-number= "Q" + question.questionNo
+              h1.question-card-number= "Q" + question.id
               p= question.text
     
     .row
@@ -19,4 +20,4 @@
       h1 OR
       h1 Ask a question!
       a(href="#")
-        input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')
+        input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')
