@@ -187,7 +187,7 @@ app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes
 */
-app.post('/api/answers', isAuthenticated, answerController.create);
+app.post('/api/answer', isAuthenticated, answerController.create);
 app.get('/api/answers/:answerId', answerController.getAnswersById);
 app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);
 
@@ -201,8 +201,8 @@ app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 */
 app.get('/forums/:school/:course/:code', forumController.getForumThreads);
 app.get('/forums/:school/:course/:code/:thread_id', forumController.getThread);
-// app.post('/api/thread', forumController.createThread)
-// app.post('/api/reply', forumController.createReply)
+app.post('/api/reply', isAuthenticated, forumController.reply);
+// app.post('/api/thread', forumController.createThread);
 
 /**
  * API examples routes.

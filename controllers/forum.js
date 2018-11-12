@@ -146,3 +146,16 @@ exports.getThread = async (req, res) => {
     replies: replies.sort((a,b) => b.votes - a.votes),
   });
 }
+
+exports.reply = async (req, res) => {
+  const newReply = {
+    text: req.body.text,
+    thread_id:  req.body.thread_id,
+    user_id: req.user._id.toString()
+  }
+  let reply = await Reply.create(newReply);
+  reply = reply.toObject();
+  reply.user = req.user;
+  reply.createdAt = moment(reply.createdAt).fromNow();
+  res.json(reply);
+}
