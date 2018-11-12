@@ -71,7 +71,7 @@ exports.getQuestionById = async (req, res) => {
 
     // Add user vote
     const userVote = userVotes.find(vote =>
-      (vote.answer_id.toString() == answerObj._id.toString())
+      (vote.post_id.toString() == answerObj._id.toString())
     );
     answerObj.userVote = userVote ? userVote.value : 0;
 
@@ -152,7 +152,7 @@ exports.getForumQuestionById = async (req, res) => {
 
     // Add user vote
     const userVote = userVotes.find(vote =>
-      (vote.answer_id.toString() == answerObj._id.toString())
+      (vote.post_id.toString() == answerObj._id.toString())
     );
     answerObj.userVote = userVote ? userVote.value : 0;
 
