@@ -3,6 +3,7 @@ const Paper = require('../Paper');
 const Question = require('../Question');
 const User = require('../User');
 const Answer = require('../Answer');
+const Vote = require('../Vote');
 const mongoose = require('mongoose');
 
 // console.log('Connecting to MongoDB..');
@@ -38,7 +39,7 @@ const answers = [
 ]
 
 async function populateTable(model, data, tableName, parent) {
-  // await model.remove(); // Empties the table
+  await model.remove(); // Empties the table
   const promises = data.map(function(doc) {
     Object.assign(doc, parent);
     return model.findOneAndUpdate(doc, doc, { upsert: true, new: true });
@@ -54,6 +55,7 @@ async function populateDb() {
   const question_id = await populateTable(Question, questions, 'Questions', { paper_id, module_id });
   const randomUser = await User.findOne();
   await populateTable(Answer, answers, 'Answers', { question_id, user_id: randomUser.id });
+  await Vote.remove();
   // console.log('Disconnecting from MongoDB..');
   mongoose.disconnect();
 }
