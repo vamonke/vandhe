@@ -8,17 +8,24 @@
         .card-body
           h1.question-card-number= "Q" + question.questionNo
           p= question.text
-    if (answers.length)
-      for answer in answers
-        .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
-          .votes
-            a.upvote ▲
-            h1=answer.votes
-            a.downvote ▼
-          p=answer.text
-          .details=answer.user_id.email + ' | ' +  answer.createdAt
+    .answers-container
+      if (answers.length)
+        for answer in answers
+          .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
+            .votes
+              a.upvote ▲
+              h1=answer.votes
+              a.downvote ▼
+            p=answer.text
+            //- p= answerJSON
+            .details= (answer.user_id.profile.name || answer.user_id.email)  + ' | ' +  answer.createdAt
+      else
+        div No answers yet
+    if (user)
+      include ../partials/answerForm
     else
-      .div No answers yet
+      p Login to answer question
+
     script(src='/js/paper.js')
     
   if (render == 'forum')

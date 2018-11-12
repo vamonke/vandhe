@@ -17,7 +17,7 @@ exports.getQuestionById = async (req, res) => {
 
   let answers = await Answer
     .find({ question_id })
-    .populate('user_id', '_id email')
+    .populate('user_id', '_id email profile')
     .exec();
 
   let post_ids = answers.map(ans => ans._id.toString());
@@ -83,7 +83,7 @@ exports.getQuestionById = async (req, res) => {
   res.render('question/question', {
     render: 'question',
     question: question,
-    answers: answers.sort((a,b) => b.votes - a.votes)
+    answers: answers.sort((a,b) => b.votes - a.votes),
   });
 };
 
@@ -97,7 +97,7 @@ exports.getForumQuestionById = async (req, res) => {
 
   let answers = await Answer
     .find({ question_id })
-    .populate('user_id', '_id email')
+    .populate('user_id', '_id email profile')
     .exec();
 
   let post_ids = answers.map(ans => ans._id.toString());
