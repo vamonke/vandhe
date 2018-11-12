@@ -6,6 +6,8 @@ const questionSchema = new mongoose.Schema({
   text: String,
   user_id: { type: Schema.Types.ObjectId, ref: 'User' },
   paper_id: { type: Schema.Types.ObjectId, ref: 'Paper' },
+  module_id: { type: Schema.Types.ObjectId, ref: 'Module' },
+  pyp: Boolean
 }, { timestamps: true });
 
 const Question = mongoose.model('Question', questionSchema);

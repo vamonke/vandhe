@@ -1,6 +1,6 @@
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
-const AnswerVote = require('../models/AnswerVote');
+const Vote = require('../models/Vote');
 
 const moment = require('moment');
 
@@ -10,54 +10,70 @@ const moment = require('moment');
  */
 exports.getQuestionById = async (req, res) => {
   const question_id = req.params.questionId;
-  const question = await Question.findById(question_id);
+  let question = await Question.findById(question_id).exec();
+  
+  // Convert MongoDB document to JSON object
+  question = question.toObject();  
+
   let answers = await Answer
     .find({ question_id })
     .populate('user_id', '_id email')
     .exec();
 
-  const answerVotes = await AnswerVote.aggregate([
+  let post_ids = answers.map(ans => ans._id.toString());
+  const answerVotes = await Vote.aggregate([
     { $match: {
-      answer_id: { $in: answers.map(ans => ans._id) }
+      post_id: { $in: post_ids }
     }},
     { $project: {
-      answer_id: 1,
+      post_id: 1,
       value: 1,
       user_id: 1,
     }},
     { $group: {
-      _id: '$answer_id',
+      _id: '$post_id',
       voteCount: { $sum: '$value' },
     }}
   ]);
 
-  const userVotes = await AnswerVote.aggregate([
-    { $match: {
-      answer_id: { $in: answers.map(ans => ans._id) },
-      user_id: { $eq: req.user._id }
-    }},
-    { $project: {
-      _id: 0,
-      answer_id: 1,
-      value: 1,
-    }}
-  ]);
+  let userVotes = [];
+  post_ids.push(question_id);
+
+  if (req.user) {
+    userVotes = await Vote.aggregate([
+      { $match: {
+        post_id: { $in: post_ids },
+        user_id: { $eq: req.user._id }
+      }},
+      { $project: {
+        _id: 0,
+        post_id: 1,
+        value: 1,
+      }}
+    ]);
+  }
+
+  // Add question user vote
+  const questionUserVote = userVotes.find(userVote =>
+    (userVote.post_id.toString() == question_id)
+  );
+  question.votes = questionUserVote ? questionUserVote.value : 0;
 
   answers = answers.map((answer) => {
     // Convert MongoDB document to JSON object
     answerObj = answer.toObject();
 
-    // Add vote count
+    // Add answer vote count
     const answerVote = answerVotes.find(vote => 
       (vote._id.toString() == answerObj._id.toString())
     );
     answerObj.votes = answerVote ? answerVote.voteCount : 0;
-    
-    // Add user vote
-    const userVote = userVotes.find(vote =>
-      (vote.answer_id.toString() == answerObj._id.toString())
+
+    // Add answer user vote
+    const answerUserVote = userVotes.find(vote =>
+      (vote.post_id.toString() == answerObj._id.toString())
     );
-    answerObj.userVote = userVote ? userVote.value : 0;
+    answerObj.userVote = answerUserVote ? answerUserVote.value : 0;
     
     // Parse date
     answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
@@ -65,6 +81,7 @@ exports.getQuestionById = async (req, res) => {
     // console.log(answerObj);
     return answerObj;
   });
+  // console.log(answers);
   res.render('question/question', {
     question: question,
     answers: answers.sort((a,b) => b.votes - a.votes)
