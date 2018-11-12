@@ -179,7 +179,7 @@ app.get('/api/question/:questionId/answers', answerController.getAnswersByQuesti
 /***
  * Answer Vote routes
 */
-app.post('/api/answer/vote', answerVoteController.vote);
+app.post('/api/answer/toggleVote', answerVoteController.vote);
 
 
 

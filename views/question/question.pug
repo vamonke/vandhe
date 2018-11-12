@@ -1,11 +1,23 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Question
-
-  div=question.text
-  h3 Answers
-  ul
-    for answer in answers
-      li= answer.text
+  script(src='../../js/vote.js').
+  .question-container
+    .row
+      .col-2
+        include ../partials/sidebar
+      .col-10
+        h1 What question are you looking for?
+        .question-card-row.question-bg
+          .card.question-bg
+            .card-body
+              h1.question-card-number= "Q" + question.questionNo
+              p= question.text
+        for answer in answers
+          .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
+            .votes
+              a.upvote ▲
+              h1=answer.votes
+              a.downvote ▼
+            p=answer.text
+            .details=answer.user_id.email + ' | ' +  answer.createdAt
