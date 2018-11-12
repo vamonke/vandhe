@@ -13,11 +13,14 @@ block content
             .card-body
               h1.question-card-number= "Q" + question.questionNo
               p= question.text
-        for answer in answers
-          .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
-            .votes
-              a.upvote ▲
-              h1=answer.votes
-              a.downvote ▼
-            p=answer.text
-            .details=answer.user_id.email + ' | ' +  answer.createdAt
+        if (answers.length)
+          for answer in answers
+            .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
+              .votes
+                a.upvote ▲
+                h1=answer.votes
+                a.downvote ▼
+              p=answer.text
+              .details=answer.user_id.email + ' | ' +  answer.createdAt
+        else
+          .div No answers yet
