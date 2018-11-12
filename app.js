@@ -168,7 +168,7 @@ app.get('/papers', paperController.getPaperByCodeYearSem);
 /***
  * Question routes
 */
-app.get('/questions/:questionId', questionController.getQuestionById);
+app.get('/questions', questionController.getQuestionById);
 
 /***
  * Answer routes
