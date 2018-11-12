@@ -1,5 +1,7 @@
 const Answer = require('../models/Answer');
 
+const moment = require('moment');
+
 /**
  * GET /api/answers/:id
  * Get answers by id.
@@ -19,3 +21,25 @@ exports.getAnswersByQuestionId = async (req, res) => {
   const answers = await Answer.find({ question_id });
   res.json({ answers });
 };
+
+/**
+ * POST /api/answers
+ * Create anwer.
+ */
+exports.create = async (req, res) => {
+  if (req.user) {
+    const newAnswer = {
+      text: req.body.text,
+      question_id:  req.body.question_id,
+      user_id: req.user._id.toString()
+    }
+    let answer = await Answer.create(newAnswer);
+    answer = answer.toObject();
+    answer.user = req.user;
+    answer.createdAt = moment(answer.createdAt).format("D MMMM YYYY");
+    res.json(answer);
+  } else {
+    res.sendStatus(401).end();
+  }
+};
+

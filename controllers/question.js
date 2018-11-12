@@ -78,7 +78,6 @@ exports.getQuestionById = async (req, res) => {
     // Parse date
     answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
 
-    // console.log(answerObj);
     return answerObj;
   });
   res.render('question/question', {

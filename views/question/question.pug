@@ -14,6 +14,13 @@ block content
               .card-body
                 h1.question-card-number= "Q" + question.questionNo
                 p= question.text
+        h1 What question are you looking for?
+        .question-card-row.question-bg
+          .card.question-bg
+            .card-body
+              h1.question-card-number= "Q" + question.questionNo
+              p= question.text
+        .answers-container
           if (answers.length)
             for answer in answers
               .answer-card(data-user-vote=answer.userVote data-answer-id=answer._id)
@@ -24,7 +31,10 @@ block content
                 p=answer.text
                 .details=answer.user_id.email + ' | ' +  answer.createdAt
           else
-            .div No answers yet
-          
-          
+            div No answers yet
+        if (user)
+          include ../partials/answerForm
+        else
+          p Login to answer question
+
   script(src='js/paper.js')
