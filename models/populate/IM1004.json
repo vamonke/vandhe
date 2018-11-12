@@ -1,108 +1,116 @@
 {
     "code": "IM1004",
+    "name": "Digital Electronics",
+    "course": "IEM",
     "papers": [
         {
-            "year": 2018,
-            "sem": 1,
+            "year": 2015,
+            "semester": 1,
             "questions": [
                 {
-                "questionNo": 1,
-                "parts": [
-                    {
-                        "questionNo": "a",
-                        "text": "A 12-bit binary number M is converted to a decimal value of 832 when it is mistaken as a BCD number. If M is in 2's complement reporesentation, what should be it's correct decimal value?"
-                    },
-                    {
-                        "questionNo": "b",
-                        "text": "Given a logic function z(a,b,c,d) = a + d(b̅ + c)"
-                    },
-                    {
-                        "questionNo":"bi",
-                        "text": "Derive the maxterms of z(a,b,c,d)"
-                    },
-                    {
-                        "questionNo":"bii",
-                        "text": "Derive a CMOS circuit for z(a,b,c,d) using minimum number of transistors"
-                    },
-                    {
-                        "questionNo":"c",
-                        "text": "Table 1 on page 2 gives the input and output characteristics of two CMOS logic families."
-                    },
-                    {
-                        "questionNo":"ci",
-                        "text": "Find the noise margins when a DE20 gate drives a DE04 gate."
-                    },
-                    {
-                        "questionNo":"cii",
-                        "text": "A DE20 gatee drives two blocks of logic gates as shown in Figure 1. If Block A contains five (5) DE20 gates and Block B contains n DE04 gates, find the maximum value for n such that the circuit will still be functioning correctly."
-                    }
-                ]
-            },
-            {
-                "questionNo": 2,
-                "parts": [
-                    {
-                        "questionNo": "a",
-                        "text": "Derive the minimum product-of-sums (POS) expression for the logic function f(a,b,c,d) = Σm(0,1,4,5,6,7,12) + x(9,14), where x(9,14) are the don't care terms."
-                    },
-                    {
-                        "questionNo": "b",
-                        "text": "Given two logic functions y(a,b,c) = b(a + c̅) and z(a,b,c) = a̅c̅ + b̅," 
-                    },
-                    {
-                        "questionNo": "bi",
-                        "text": "implement y(a,b,c) using a 3-to-8 decoder with the function table given in Table 2 on page 3, and one logic gate with any number of inputs;"
-                    },
-                    {
-                        "questionNo": "bii",
-                        "text": "implement z(a,b,c) using a 4-to-1 MUX with the function table given in Table 3 on pages 3;"
-                    },
-                    {
-                        "questionNo": "biii",
-                        "text": "implement both y(a,b,c) and z(a,b,c) using the PLA given in Figure 2. Copy the exact PLA in Figure 2 to your answer booklet and complete the necessary connections, inputs and outputs. Note: No additional inputs or gates are allowed."
-                    }
-                ]
-            },
-            {
-                "questionNo": 3,
-                "parts": [
-                    {
-                        "questionNo": "3a",
-                        "text": "A CX flip-flop is a special kind of level-triggered flip-flop, which is flexible to operate either as a D or T flip-flop. The C input of the flip-flop serves as a mode control input. When C is 0, the flip-flop functions like a D flip-flop with X serving as the D input, similar to a normal D flip-flop. Likewise, when C is 1, the flip-flop functions as a T flip-flop with X serving as the T input, similar to a normal T flip-flop. Design the CX flip-flop starting with a cross-coupled NAND cell and the necessary flip-flop decoding logic gates realized using inverter, 2-, 3- and 4-input NAND gates only." 
-                    },
-                    {
-                        "questionNo": "3b",
-                        "text": "The CX flip-flop designed in part (a) is level-triggered. Describe what happens when M = 1 and X = 1." 
-                    },
-                    {
-                        "questionNo": "3c",
-                        "text": "Using the CX flip-flop you designed in part (a) as the master flip-flop, draw the master-slave configuration showing the detailed circuit configuration. Your circuit should use inverters and NAND logic gates only." 
-                    }
-
-                ]
-            },
-            {
-                "questionNo": 4,
-                "parts": [
-                    {
-                        "questionNo": "a",
-                        "text": "Analyze the circuit shown in Figure 3 below, and draw the state diagram for the circuit. Show all the steps in deriving the state diagram." 
-                    },
-                    {
-                        "questionNo": "b",
-                        "text": "The data on propagation delays of the components used in part (a) are summarized in Table 4. Determine the maximum frequency of operation for the circuit with setup time margin of 5 ns." 
-                    },
-                    {
-                        "questionNo": "c",
-                        "text": "For the circuit in part (a), implement a functionally equivalent circuit using ONLY 3 flip-flops. You are free to choose any type of flip-flops deemed appropriate for the purpose." 
-                    },
-                    {
-                        "questionNo": "d",
-                        "text": "Refer to the SRAM shown in Figure 4. Assume that all the cells contain data value of 1. A2A1A0 is set to 110 while DIN3DIN2DIN1DIN0 is set to 1001. Complete Table 5 by specifying the values of tri-state (0,1 or Z) outputs DOUT3, DOUT2, DOUT1 and DOUT0. Provide your answers by reporoducing the table in your answer script."    
-                    }
-                ]
-            }
-             ]
+                    "questionNo": 1,
+                    "parts": [
+                        {
+                            "questionNo": "a",
+                            "text": "A 12-bit binary number M is converted to a decimal value of 832 when it is mistaken as a BCD number. If M is in 2's complement reporesentation, what should be it's correct decimal value?"
+                        },
+                        {
+                            "questionNo": "b",
+                            "text": "Given a logic function z(a,b,c,d) = a + d(b̅ + c)"
+                        },
+                        {
+                            "questionNo":"bi",
+                            "text": "Derive the maxterms of z(a,b,c,d)"
+                        },
+                        {
+                            "questionNo":"bii",
+                            "text": "Derive a CMOS circuit for z(a,b,c,d) using minimum number of transistors"
+                        },
+                        {
+                            "questionNo":"c",
+                            "text": "Table 1 on page 2 gives the input and output characteristics of two CMOS logic families."
+                        },
+                        {
+                            "questionNo":"ci",
+                            "text": "Find the noise margins when a DE20 gate drives a DE04 gate.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_1_ci.png"
+                        },
+                        {
+                            "questionNo":"cii",
+                            "text": "A DE20 gatee drives two blocks of logic gates as shown in Figure 1. If Block A contains five (5) DE20 gates and Block B contains n DE04 gates, find the maximum value for n such that the circuit will still be functioning correctly."
+                        }
+                    ]
+                },
+                {
+                    "questionNo": 2,
+                    "parts": [
+                        {
+                            "questionNo": "a",
+                            "text": "Derive the minimum product-of-sums (POS) expression for the logic function f(a,b,c,d) = Σm(0,1,4,5,6,7,12) + x(9,14), where x(9,14) are the don't care terms."
+                        },
+                        {
+                            "questionNo": "b",
+                            "text": "Given two logic functions y(a,b,c) = b(a + c̅) and z(a,b,c) = a̅c̅ + b̅," 
+                        },
+                        {
+                            "questionNo": "bi",
+                            "text": "implement y(a,b,c) using a 3-to-8 decoder with the function table given in Table 2 on page 3, and one logic gate with any number of inputs;",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_bi.png"
+                        },
+                        {
+                            "questionNo": "bii",
+                            "text": "implement z(a,b,c) using a 4-to-1 MUX with the function table given in Table 3 on pages 3;",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_bii.png"
+                        },
+                        {
+                            "questionNo": "biii",
+                            "text": "implement both y(a,b,c) and z(a,b,c) using the PLA given in Figure 2. Copy the exact PLA in Figure 2 to your answer booklet and complete the necessary connections, inputs and outputs. Note: No additional inputs or gates are allowed.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_biii.png"
+                        }
+                    ]
+                },
+                {
+                    "questionNo": 3,
+                    "parts": [
+                        {
+                            "questionNo": "a",
+                            "text": "A CX flip-flop is a special kind of level-triggered flip-flop, which is flexible to operate either as a D or T flip-flop. The C input of the flip-flop serves as a mode control input. When C is 0, the flip-flop functions like a D flip-flop with X serving as the D input, similar to a normal D flip-flop. Likewise, when C is 1, the flip-flop functions as a T flip-flop with X serving as the T input, similar to a normal T flip-flop. Design the CX flip-flop starting with a cross-coupled NAND cell and the necessary flip-flop decoding logic gates realized using inverter, 2-, 3- and 4-input NAND gates only." 
+                        },
+                        {
+                            "questionNo": "b",
+                            "text": "The CX flip-flop designed in part (a) is level-triggered. Describe what happens when M = 1 and X = 1." 
+                        },
+                        {
+                            "questionNo": "c",
+                            "text": "Using the CX flip-flop you designed in part (a) as the master flip-flop, draw the master-slave configuration showing the detailed circuit configuration. Your circuit should use inverters and NAND logic gates only." 
+                        }
+                    ]
+                },
+                {
+                    "questionNo": 4,
+                    "parts": [
+                        {
+                            "questionNo": "a",
+                            "text": "Analyze the circuit shown in Figure 3 below, and draw the state diagram for the circuit. Show all the steps in deriving the state diagram.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_a.png"
+                        },
+                        {
+                            "questionNo": "b",
+                            "text": "The data on propagation delays of the components used in part (a) are summarized in Table 4. Determine the maximum frequency of operation for the circuit with setup time margin of 5 ns.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_b.png"
+                        },
+                        {
+                            "questionNo": "c",
+                            "text": "For the circuit in part (a), implement a functionally equivalent circuit using ONLY 3 flip-flops. You are free to choose any type of flip-flops deemed appropriate for the purpose." 
+                        },
+                        {
+                            "questionNo": "d",
+                            "text": "Refer to the SRAM shown in Figure 4. Assume that all the cells contain data value of 1. A2A1A0 is set to 110 while DIN3DIN2DIN1DIN0 is set to 1001. Complete Table 5 by specifying the values of tri-state (0,1 or Z) outputs DOUT3, DOUT2, DOUT1 and DOUT0. Provide your answers by reporoducing the table in your answer script.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_d.png"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

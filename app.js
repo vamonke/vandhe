@@ -159,6 +159,13 @@ app.get('/api/test', (req, res) => {
   res.json(req.params);
 });
 
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.sendStatus(403).end();
+};
+
 /***
  * Module routes
 */
@@ -168,22 +175,24 @@ app.get('/api/modules', moduleController.getModulesByCourse);
  * Paper routes
  */
 app.get('/papers', paperController.getPaperByCodeYearSem);
-
+app.post('/papers', paperController.postPaperByCodeYearSem);
 /***
  * Question routes
 */
 app.get('/questions', questionController.getQuestionById);
+app.get('/questions/part', questionController.getQuestionPartById);
 app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes
 */
+app.post('/api/answers', isAuthenticated, answerController.create);
 app.get('/api/answers/:answerId', answerController.getAnswersById);
 app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);
 
 /***
  * Vote routes
 */
-app.post('/api/vote/toggleVote', voteController.toggleVote);
+app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 
 app.get('/forums/:school/:course/:code', forumController.getForumQuestions)
 
