@@ -4,7 +4,7 @@
     "course": "IEM",
     "papers": [
         {
-            "year": 2018,
+            "year": 2015,
             "semester": 1,
             "questions": [
                 {
@@ -32,7 +32,8 @@
                         },
                         {
                             "questionNo":"ci",
-                            "text": "Find the noise margins when a DE20 gate drives a DE04 gate."
+                            "text": "Find the noise margins when a DE20 gate drives a DE04 gate.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_1_ci.png"
                         },
                         {
                             "questionNo":"cii",
@@ -53,15 +54,18 @@
                         },
                         {
                             "questionNo": "bi",
-                            "text": "implement y(a,b,c) using a 3-to-8 decoder with the function table given in Table 2 on page 3, and one logic gate with any number of inputs;"
+                            "text": "implement y(a,b,c) using a 3-to-8 decoder with the function table given in Table 2 on page 3, and one logic gate with any number of inputs;",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_bi.png"
                         },
                         {
                             "questionNo": "bii",
-                            "text": "implement z(a,b,c) using a 4-to-1 MUX with the function table given in Table 3 on pages 3;"
+                            "text": "implement z(a,b,c) using a 4-to-1 MUX with the function table given in Table 3 on pages 3;",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_bii.png"
                         },
                         {
                             "questionNo": "biii",
-                            "text": "implement both y(a,b,c) and z(a,b,c) using the PLA given in Figure 2. Copy the exact PLA in Figure 2 to your answer booklet and complete the necessary connections, inputs and outputs. Note: No additional inputs or gates are allowed."
+                            "text": "implement both y(a,b,c) and z(a,b,c) using the PLA given in Figure 2. Copy the exact PLA in Figure 2 to your answer booklet and complete the necessary connections, inputs and outputs. Note: No additional inputs or gates are allowed.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_2_biii.png"
                         }
                     ]
                 },
@@ -87,11 +91,13 @@
                     "parts": [
                         {
                             "questionNo": "a",
-                            "text": "Analyze the circuit shown in Figure 3 below, and draw the state diagram for the circuit. Show all the steps in deriving the state diagram." 
+                            "text": "Analyze the circuit shown in Figure 3 below, and draw the state diagram for the circuit. Show all the steps in deriving the state diagram.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_a.png"
                         },
                         {
                             "questionNo": "b",
-                            "text": "The data on propagation delays of the components used in part (a) are summarized in Table 4. Determine the maximum frequency of operation for the circuit with setup time margin of 5 ns." 
+                            "text": "The data on propagation delays of the components used in part (a) are summarized in Table 4. Determine the maximum frequency of operation for the circuit with setup time margin of 5 ns.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_b.png"
                         },
                         {
                             "questionNo": "c",
@@ -99,7 +105,8 @@
                         },
                         {
                             "questionNo": "d",
-                            "text": "Refer to the SRAM shown in Figure 4. Assume that all the cells contain data value of 1. A2A1A0 is set to 110 while DIN3DIN2DIN1DIN0 is set to 1001. Complete Table 5 by specifying the values of tri-state (0,1 or Z) outputs DOUT3, DOUT2, DOUT1 and DOUT0. Provide your answers by reporoducing the table in your answer script."    
+                            "text": "Refer to the SRAM shown in Figure 4. Assume that all the cells contain data value of 1. A2A1A0 is set to 110 while DIN3DIN2DIN1DIN0 is set to 1001. Complete Table 5 by specifying the values of tri-state (0,1 or Z) outputs DOUT3, DOUT2, DOUT1 and DOUT0. Provide your answers by reporoducing the table in your answer script.",
+                            "figure": "https://res.cloudinary.com/vamonke/image/upload/v1542029966/vandhe/im1004_2015_1_4_d.png"
                         }
                     ]
                 }
