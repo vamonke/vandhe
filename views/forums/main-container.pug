@@ -19,8 +19,7 @@
           .details=answer.user_id.email + ' | ' +  answer.createdAt
     else
       .div No answers yet
-
-  script(src='/js/paper.js')
+    script(src='/js/paper.js')
     
   if (render == 'forum')
     if (questions)
@@ -35,8 +34,6 @@
                 a(href="/questions/forum?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&questionId=" + question._id)
                   h1.question-card-number= "Q" + question.questionNo
                   p= question.text
-      
-    
     else
       .no-paper
         h1 We could not find what you were looking for. Try searching again?

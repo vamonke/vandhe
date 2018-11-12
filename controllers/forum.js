@@ -11,7 +11,7 @@ exports.getForumQuestions = async (req, res) => {
   const mod = await Module.findOne({ code });
   const paper = await Paper.findOne({ year, semester, module_id: mod._id });
   if (paper == null){
-    res.render('papers/paper', {
+    res.render('forums/forum', {
 
     });
   }

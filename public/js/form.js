@@ -27,7 +27,22 @@ $(document).ready(function() {
             $("section[data-step='" + step + "']").show();
             $("button.button-outline").show();
             if(step === 2){
-
+              // $('#select-course-home').empty();
+              // var courses = {
+              //   'SCBE': ['CBE', 'BIE'],
+              //   'MAE': ['ME', 'AERO'],
+              //   'ADM': ['ART'],
+              //   'SCSE': ['CS', 'CE'],
+              //   'EEE': ['EEE', 'IEM'],
+              //   'NBS': ['BUS', 'ACC']
+              // }
+              // var school = $("input[name=school]:checked").val();
+              // var selectedCourses = courses[school];
+              // selectedCourses.forEach((course) => {
+              //   var template = `<div class="col-6"><input id="course-`+ course.toLowerCase() + `" type="radio" name="course" value="` + course + `"/>
+              //   <label class="btn btn-outline-light school-button" for="course-` + course.toLowerCase() + `">`+ course +`</label></div>`;
+              //   $('#select-course-home').append(template);
+              // })
             }
             if(step === 3){
               $(".login-link").hide();

@@ -13,7 +13,8 @@ const lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, se
 const modules = [
   { code: 'IM4717', name: 'Web Application Design', course: 'IEM' },
   { code: 'IM4791', name: 'Database Systems', course: 'IEM' },
-  { code: 'IM4483', name: 'Artificial Intelligence and Data Mining', course: 'IEM' }
+  { code: 'IM4483', name: 'Artificial Intelligence and Data Mining', course: 'IEM' },
+  { code: 'EE4483', name: 'Artificial Intelligence and Data Mining', course: 'EEE' },
 ];
 
 const papers = [
