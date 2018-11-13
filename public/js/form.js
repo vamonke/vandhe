@@ -84,6 +84,7 @@ $(document).ready(function() {
         $("section[data-step]").hide();
         $("section[data-step='" + step + "']").show();
         $(".button-primary").hide();
+        $(".login-link").show();
 
         if(step === 1) {
             $("button.button-outline").hide();

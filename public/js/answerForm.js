@@ -23,6 +23,8 @@ function appendNewAnswer(newAnswer, status, xhr) {
 
 $(document).ready(function() {
   $('#submit-answer').click(function() {
+    $('#no-answers').hide();
+    $('#no-replies').hide();
     $this = $(this);
     let formData = {};
     let type;

@@ -158,7 +158,7 @@ exports.getThread = async (req, res) => {
   );
   thread.userVote = threadUserVote ? threadUserVote.value : 0;
   thread.createdAt = moment(thread.createdAt).fromNow();
-  
+
 
   const threadVoteCount = voteCounts.find(vote =>
     (vote._id.toString() == thread._id.toString())
@@ -205,4 +205,28 @@ exports.reply = async (req, res) => {
   reply.user = req.user;
   reply.createdAt = moment(reply.createdAt).fromNow();
   res.json(reply);
+}
+
+exports.getQuestionForm = async (req, res) => {
+  res.render('forums/forum', {
+    render: 'forum ask',
+    params: req.params
+  });
+}
+
+exports.createThread = async (req, res, next) => {
+
+  const thread = new Thread({
+    title: req.body.title,
+    description: req.body.description,
+    module: req.body.module,
+    user_id: req.body.user_id
+  })
+
+  thread.save((err, newthread) => {
+    if (err) { return next(err); }
+    // console.log()
+    res.redirect(req.body.redirect + '/' + newthread._id);
+  })
+
 }

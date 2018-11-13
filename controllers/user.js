@@ -94,7 +94,13 @@ exports.postSignup = (req, res, next) => {
 
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile: {
+      votes: 100,
+      school: 'EEE',
+      course: 'IEM',
+      badges: ["Gold", "Silver"]
+    }
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {

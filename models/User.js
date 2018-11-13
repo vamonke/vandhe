@@ -8,13 +8,6 @@ const userSchema = new mongoose.Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
 
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  steam: String,
   tokens: Array,
 
   profile: {
@@ -24,7 +17,9 @@ const userSchema = new mongoose.Schema({
     website: String,
     picture: String,
     school: String,
-    course: String
+    course: String,
+    votes: Number,
+    badges: [String]
   }
 }, { timestamps: true });
 

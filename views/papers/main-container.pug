@@ -10,12 +10,12 @@
           .col-12
             .card
               //- p= JSON.stringify(question)
-              if (question.text !== null)
+              if (question.text)
                 a(href="/questions?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + question._id)
                   .card-body
                     h1.question-card-number= "Q" + question.questionNo
                     p= question.text || 'Click to view question'
-                    //- p= JSON.stringify(question)
+                    p= JSON.stringify(question)
               else 
                 form(method='POST', action='/papers')
                   input(type='hidden', name='school', value= params.school)
@@ -25,7 +25,7 @@
                   input(type='hidden', name='sem', value= params.sem)
                   input(type='hidden', name='questionId', value= question._id)
                   input(type='hidden', name='questionParts', value= question.questionParts)
-                  button.card-body(type='submit')
+                  button.card-button.card-body(type='submit')
                     h1.question-card-number= "Q" + question.questionNo
                     p= question.text || 'Click to view question'
       
@@ -51,7 +51,7 @@
                 .card
                   a(href="/questions/part?school=" + params.school + "&course=" + params.course + "&code=" + params.code + "&year=" + params.year + "&sem=" + params.sem + "&questionNo=" + question.questionNo + "&questionId=" + part._id)
                     .card-body
-                      h1.question-card-number= part.questionNo
+                      h1.question-card-number= question.questionNo + part.questionNo
                       p= part.text || 'Click to view question'
                       //- p= JSON.stringify(question)
                   

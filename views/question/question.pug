@@ -27,7 +27,7 @@ block content
                     img.answer-gravatar(src=user.gravatar(60)) 
                     span= ((answer.user_id.profile && answer.user_id.profile.name) || answer.user_id.email) + ' | ' +  answer.createdAt
             else
-              p No answers yet
+              p#no-answers No answers yet
           if (user)
             include ../partials/answerForm
           else

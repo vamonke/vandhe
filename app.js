@@ -201,8 +201,9 @@ app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 */
 app.get('/forums/:school/:course/:code', forumController.getForumThreads);
 app.get('/forums/:school/:course/:code/:thread_id', forumController.getThread);
+app.get('/ask/forums/:school/:course/:code', forumController.getQuestionForm);
+app.post('/api/thread', forumController.createThread)
 app.post('/api/reply', isAuthenticated, forumController.reply);
-// app.post('/api/thread', forumController.createThread);
 
 /**
  * API examples routes.

@@ -273,7 +273,7 @@ label {
 
 .fa-circle {
   color: grey;
-  font-size: 0.6em !important; 
+  font-size: 0.6em !important;
   margin: 10px;
 }
 
@@ -288,7 +288,7 @@ label {
   background: {
     color: #f7f7f7;
   }
-  
+
   height: 100vh;
   width: 100vw;
   position:absolute;
@@ -406,7 +406,7 @@ select {
   padding: 0;
   -moz-border-radius: 0px;
   -webkit-border-radius: 4px 4px 0px 0px;
-  border-radius: 4px 4px 0px 0px; 
+  border-radius: 4px 4px 0px 0px;
   background-color: #cccccc;
 }
 #inline-href{
@@ -512,4 +512,23 @@ input[type=radio]:checked + label {
 .answer-gravatar{
   max-height: 30px;
   margin-right: 10px;
+}
+.card-body{
+  display: flex;
+  align-items: center;
+  p{
+    margin-bottom: 0px;
+  }
+}
+.card-button{
+  &:focus{
+    outline: 2px solid #23cb9d;
+  }
+  border: {
+    color: rgba(0,0,0,0);
+  }
+  p{
+    margin-bottom: 0px;
+  }
+  width: 100%;
 }

@@ -35,7 +35,7 @@ block content
                     span= ((reply.user_id.profile && reply.user_id.profile.name) || reply.user_id.email) + ' | ' +  reply.createdAt
             else
               br
-              p No replies yet
+              p#no-replies No replies yet
           if (user)
             include ../partials/answerForm
           else

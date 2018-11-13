@@ -16,7 +16,12 @@ $(document).ready(function() {
   var sem = [1, 2];
 
   var params = window.location.pathname.split('/');
+  var filtered = params.filter((el) => {
+    return el != "ask";
+  });
 
+  params = filtered;
+  console.log(params);
   // get the school, course and code
   var school = params[2];
   var course = params[3];
@@ -116,6 +121,8 @@ $(document).ready(function() {
 
 
 
+  $('#ask-question').attr('href', '/ask' + window.location.pathname);
 
+  $('input[name="redirect"]').val(params.join('/'));
 
 });
