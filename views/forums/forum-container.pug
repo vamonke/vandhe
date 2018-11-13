@@ -1,0 +1,78 @@
+.container#paper-main-container
+  if (mod)
+    .row    
+      .col-12
+        h1= mod.code + ' ' + mod.name
+        a#ask-question( href='#/ask')
+          .btn.btn-primary
+            | Ask Question
+    if (threads.length)
+      div.forum-sort-box
+        span Sort by:
+        = ' '
+        a(href='?sortBy=score') Top
+        a(href='?sortBy=latest') Latest
+        a(href='?sortBy=replies') Replies
+      .row.forum-labels
+        .col-12
+          hr
+        .col-1.center Score
+        .col-8 Topic
+        .col-1.center Replies
+        .col-2.center Activity
+      each thread in threads
+        .row.thread-card
+          .col-1.center.votes(data-user-vote=thread.userVote data-post-id=thread._id)
+            a.upvote ▲
+            h1.vote-count= thread.votes
+            a.downvote ▼
+          .col-8
+            a(href= mod.code + '/' + thread._id)
+              h4= thread.title
+            p.description= thread.description
+          .col-1.center= thread.replyCount || 0
+          .col-2.center
+            if thread.lastReplied
+              div Last replied
+              =thread.lastReplied
+            else
+              div Asked
+              =thread.createdAt
+      script(src='/js/vote.js')
+    else
+      hr
+      p No questions yet
+  else if (render == 'forum ask')
+    if user
+      .row 
+        .col-12 
+          h1 Ask your question
+          .row
+            .col-12
+              form(method = 'POST', action = '/api/thread')
+                input(type='hidden', name='redirect')
+                input(type='hidden', name='module', value= params.code)
+                input(type='hidden', name='user_id', value= user._id)
+                .form-group.row
+                  label.col-md-3.col-form-label.font-weight-bold.text-right(for='title') Question Title
+                  .col-md-7
+                    input.form-control(type='text', name='title', id='title', placeholder='Title', autofocus, required)
+                .form-group.row
+                  label.col-md-3.col-form-label.font-weight-bold.text-right(for='description') Description
+                  .col-md-7
+                    textarea.form-control(type='text', name='description', id='description', placeholder='Description', required)
+                .form-group
+                .offset-sm-3.col-md-7.pl-2
+                  button.col-md-3.btn.btn-primary(type='submit')
+                    | Submit
+    else 
+      .row   
+        .col-12
+          h1 Please login to ask question        
+  else
+    .no-paper
+      h1 We could not find what you were looking for. Try searching again?
+      h1 OR
+      h1 Ask a question!
+      a(href="#")
+        input.btn.btn-warning.button.button-primary(type='button', value='PYP Help')

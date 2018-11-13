@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .question-container
+    .row
+      .col-2
+        include ../partials/forum-sidebar
+      .col-10
+        .container#paper-main-container
+          .thread-header.question-bg
+            .row
+              .col-1
+                .votes(data-user-vote=thread.userVote data-post-id=thread._id)
+                  a.upvote ▲
+                  h1=thread.votes
+                  a.downvote ▼
+              .col-11
+                h3= thread.title
+                br
+                p= thread.description
+                .details
+                  img.answer-gravatar(src=user.gravatar(60)) 
+                  span= ((thread.user_id.profile && thread.user_id.profile.name) || thread.user_id.email) + ' | ' +  thread.createdAt
+          .answers-container
+            if (replies.length)
+              for reply in replies
+                .answer-card
+                  .votes(data-user-vote=reply.userVote data-post-id=reply._id)
+                    a.upvote ▲
+                    h1=reply.votes
+                    a.downvote ▼
+                  p=reply.text
+                  .details 
+                    img.answer-gravatar(src=user.gravatar(60)) 
+                    span= ((reply.user_id.profile && reply.user_id.profile.name) || reply.user_id.email) + ' | ' +  reply.createdAt
+            else
+              br
+              p#no-replies No replies yet
+          if (user)
+            include ../partials/answerForm
+          else
+            p Login to answer question
+  script(src='/js/forum.js')
+  script(src='/js/vote.js')

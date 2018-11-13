@@ -76,4 +76,19 @@ $(document).ready(function() {
         }
 
     });
+    $(".fa-chevron-left").click(function(e) {
+        e.preventDefault();
+        var step = $("form").data("step");
+        step -= 1;
+        $("form").data("step", step);
+        $("section[data-step]").hide();
+        $("section[data-step='" + step + "']").show();
+        $(".button-primary").hide();
+        $(".login-link").show();
+
+        if(step === 1) {
+            $("button.button-outline").hide();
+        }
+
+    });
 });

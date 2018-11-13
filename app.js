@@ -116,10 +116,12 @@ app.use((req, res, next) => {
     && req.path !== '/signup'
     && !req.path.match(/^\/auth/)
     && !req.path.match(/\./)) {
-    req.session.returnTo = req.originalUrl;
+    // req.session.returnTo = req.originalUrl;
+    req.session.returnTo = "/";
   } else if (req.user
     && (req.path === '/account' || req.path.match(/^\/api/))) {
-    req.session.returnTo = req.originalUrl;
+    // req.session.returnTo = req.originalUrl;
+    req.session.returnTo = "/";
   }
   next();
 });
@@ -185,7 +187,8 @@ app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes
 */
-app.post('/api/answers', isAuthenticated, answerController.create);
+app.put('/api/answer', answerController.update);
+app.post('/api/answer', isAuthenticated, answerController.create);
 app.get('/api/answers/:answerId', answerController.getAnswersById);
 app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);
 
@@ -194,7 +197,14 @@ app.get('/api/question/:questionId/answers', answerController.getAnswersByQuesti
 */
 app.post('/api/vote/toggleVote', isAuthenticated, voteController.toggleVote);
 
-app.get('/forums/:school/:course/:code', forumController.getForumQuestions)
+/***
+ * Forum routes
+*/
+app.get('/forums/:school/:course/:code', forumController.getForumThreads);
+app.get('/forums/:school/:course/:code/:thread_id', forumController.getThread);
+app.get('/ask/forums/:school/:course/:code', forumController.getQuestionForm);
+app.post('/api/thread', forumController.createThread)
+app.post('/api/reply', isAuthenticated, forumController.reply);
 
 /**
  * API examples routes.

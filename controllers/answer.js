@@ -23,23 +23,29 @@ exports.getAnswersByQuestionId = async (req, res) => {
 };
 
 /**
- * POST /api/answers
- * Create anwer.
+ * POST /api/answer
+ * Create answer to question.
  */
 exports.create = async (req, res) => {
-  if (req.user) {
-    const newAnswer = {
-      text: req.body.text,
-      question_id:  req.body.question_id,
-      user_id: req.user._id.toString()
-    }
-    let answer = await Answer.create(newAnswer);
-    answer = answer.toObject();
-    answer.user = req.user;
-    answer.createdAt = moment(answer.createdAt).format("D MMMM YYYY");
-    res.json(answer);
-  } else {
-    res.sendStatus(401).end();
+  const newAnswer = {
+    text: req.body.text,
+    question_id:  req.body.question_id,
+    user_id: req.user._id.toString()
   }
+  let answer = await Answer.create(newAnswer);
+  answer = answer.toObject();
+  answer.user = req.user;
+  answer.createdAt = moment(answer.createdAt).fromNow();
+  res.json(answer);
 };
 
+// PUT /api/answer
+exports.update = async (req, res) => {
+  Answer.findById(req.body.id, (err, answer) => {
+    answer.prof_approved = true;
+    answer.save((err) => {
+      if (err) { res.json (err)}
+      res.json(answer);
+    })
+  });
+}
