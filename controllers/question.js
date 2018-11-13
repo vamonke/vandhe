@@ -77,7 +77,7 @@ exports.getQuestionById = async (req, res) => {
     answerObj.userVote = userVote ? userVote.value : 0;
 
     // Parse date
-    answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
+    answerObj.createdAt = moment(answerObj.createdAt).fromNow();
 
     return answerObj;
   });
@@ -156,7 +156,7 @@ exports.getQuestionPartById = async (req, res) => {
     answerObj.userVote = userVote ? userVote.value : 0;
 
     // Parse date
-    answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
+    answerObj.createdAt = moment(answerObj.createdAt).fromNow();
 
     return answerObj;
   });
@@ -235,7 +235,7 @@ exports.getForumQuestionById = async (req, res) => {
     answerObj.userVote = userVote ? userVote.value : 0;
 
     // Parse date
-    answerObj.createdAt = moment(answerObj.createdAt).format("D MMMM YYYY");
+    answerObj.createdAt = moment(answerObj.createdAt).fromNow();
 
     // console.log(answerObj);
     return answerObj;

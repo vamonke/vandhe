@@ -15,7 +15,7 @@
                   .card-body
                     h1.question-card-number= "Q" + question.questionNo
                     p= question.text || 'Click to view question'
-                    p= JSON.stringify(question)
+                    //- p= JSON.stringify(question)
               else 
                 form(method='POST', action='/papers')
                   input(type='hidden', name='school', value= params.school)

@@ -89,3 +89,15 @@ $red: #f46303;
   font-size: 1em;
   text-align: right;
 }
+
+.forum-labels {
+  font-weight: 600;
+}
+
+.forum-sort-box {
+  margin-top: 10px;
+  a {
+    display: inline-block;
+    margin-left: 8px;
+  }
+}

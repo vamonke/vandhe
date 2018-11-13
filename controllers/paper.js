@@ -22,7 +22,7 @@ exports.getPaperByCodeYearSem = async (req, res) => {
       render: 'questions'
     });
   }
-  let questions = await Question.find({ paper_id: paper._id }).exec();
+  let questions = await Question.find({ paper_id: paper._id }).sort('questionNo').exec();
 
   let newQuestionsObject = questions.map((question) => {
     return JSON.parse(JSON.stringify(question))
