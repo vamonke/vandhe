@@ -2,6 +2,7 @@ function postVote() {
   $votes = $(this).parent();
   const value = $(this).attr('class') === 'upvote' ? 1 : -1;
   const post_id = $votes.data('postId');
+  // console.log($votes.data('userVote'));
   $.ajax({
     type: "POST",
     url: "/api/vote/toggleVote",
@@ -10,7 +11,7 @@ function postVote() {
       const newUserVote = data.value;
       const oldUserVote = $votes.attr('data-user-vote');
       $votes.attr('data-user-vote', newUserVote);
-      const oldVoteCount = parseInt($votes.find('h1').text());
+      const oldVoteCount = parseInt($votes.children().eq(1).text());
       const newVoteCount = oldVoteCount - oldUserVote + newUserVote;
       console.log('New vote count: ' + newVoteCount);
       $votes.find('h1').text(newVoteCount);
