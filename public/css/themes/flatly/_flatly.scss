@@ -513,7 +513,7 @@ input[type=radio]:checked + label {
   max-height: 30px;
   margin-right: 10px;
 }
-.card-body{
+.display-flex{
   display: flex;
   align-items: center;
   p{
@@ -554,4 +554,29 @@ input[type=radio]:checked + label {
     size: 12px;
     weight: 800;
   }
+}
+.scrollspy{
+  display: inline-block;
+  position: fixed;
+  z-index: 3000;
+  right: 30px;
+  top: 50%;
+  width: auto;
+  margin-top: -100px;
+  ul{
+    list-style: none;
+    li{
+      // border: 1px solid black;
+      padding: 10px;
+      a {
+        color: #03a9f4;
+        -webkit-transition: all 0.5s ease;
+      }
+      a:hover {
+        font-weight: 700;
+        text-decoration: none;
+      }
+    }
+  }
+
 }

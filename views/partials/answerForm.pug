@@ -1,14 +1,22 @@
-form
-  script(src='/js/answerForm.js')
-  hr
-  h4 Your Answer
-  .form-group
-    if (question)
-      input(type='hidden' name='question_id' value=question._id)
-    else if (thread)
-      input(type='hidden' name='thread_id' value=thread._id)
-    textarea.form-control(name='text', id='answer-text')
-  .form-group
-      .btn.btn-primary(id='submit-answer')
-        i.far.fa-envelope.fa-sm
-        | Submit
+#accordionExample.accordion
+  .card
+    #headingTwo.card-header
+      h5.mb-0
+        button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+          | Answer Question #{question.questionNo} Here
+    #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordionExample')
+      .card-body
+        form
+          script(src='/js/answerForm.js')
+          hr
+          h4 Your Answer
+          .form-group
+            if (question)
+              input(type='hidden' name='question_id' value=question._id)
+            else if (thread)
+              input(type='hidden' name='thread_id' value=thread._id)
+            textarea.form-control(name='text', id='answer-text')
+          .form-group
+              .btn.btn-primary(id='submit-answer')
+                i.far.fa-envelope.fa-sm
+                | Submit
