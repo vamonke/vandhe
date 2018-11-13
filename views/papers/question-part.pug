@@ -8,7 +8,7 @@
       data-sem=params.sem
       data-questionNo=question.questionNo
       data-questionId=part._id)
-      .card-body
+      .card-body(id= question.questionNo + part.questionNo)
         h5.question-card-number= part.questionNo + '.'
         p= part.text || 'Click to view question'
         //- p= JSON.stringify(question)
