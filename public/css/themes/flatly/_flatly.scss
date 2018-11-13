@@ -532,3 +532,26 @@ input[type=radio]:checked + label {
   }
   width: 100%;
 }
+
+.user-ranking{
+  font:{
+    size: 12px;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.gold-badge{
+  color: rgb(251, 211, 0);
+}
+
+.silver-badge{
+  color: rgb(172, 172, 172);
+}
+.professor-approved{
+  font:{
+    size: 12px;
+    weight: 800;
+  }
+}

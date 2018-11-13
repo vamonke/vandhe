@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
     school: String,
     course: String,
     votes: Number,
-    badges: [String]
+    badges: [String],
+    role: String
   }
 }, { timestamps: true });
 

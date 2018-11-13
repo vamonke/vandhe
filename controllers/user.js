@@ -91,17 +91,28 @@ exports.postSignup = (req, res, next) => {
     req.flash('errors', errors);
     return res.redirect('/signup');
   }
-
-  const user = new User({
+  let user = new User({
     email: req.body.email,
     password: req.body.password,
-    profile: {
+  });
+
+  if(req.body.role == "Student"){
+    user.profile =  {
       votes: 100,
       school: 'EEE',
       course: 'IEM',
-      badges: ["Gold", "Silver"]
+      badges: ["Gold", "Silver"],
+      role: "Student"
     }
-  });
+
+  } else {
+    user.profile= {
+      school: 'EEE',
+      course: 'IEM',
+      role: req.body.role
+    }
+  }
+
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
     if (err) { return next(err); }

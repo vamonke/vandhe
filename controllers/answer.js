@@ -39,3 +39,13 @@ exports.create = async (req, res) => {
   res.json(answer);
 };
 
+// PUT /api/answer
+exports.update = async (req, res) => {
+  Answer.findById(req.body.id, (err, answer) => {
+    answer.prof_approved = true;
+    answer.save((err) => {
+      if (err) { res.json (err)}
+      res.json(answer);
+    })
+  });
+}

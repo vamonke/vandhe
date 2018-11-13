@@ -187,6 +187,7 @@ app.get('/questions/forum', questionController.getForumQuestionById);
 /***
  * Answer routes
 */
+app.put('/api/answer', answerController.update);
 app.post('/api/answer', isAuthenticated, answerController.create);
 app.get('/api/answers/:answerId', answerController.getAnswersById);
 app.get('/api/question/:questionId/answers', answerController.getAnswersByQuestionId);

@@ -22,10 +22,24 @@ block content
                     a.upvote ▲
                     h1=answer.votes
                     a.downvote ▼
+                  if (answer.prof_approved)
+                    if(answer.prof_approved == true)
+                      i.fas.fa-star.gold-badge
+                      span.professor-approved= "Professor Approved"
                   p=answer.text
                   .details 
-                    img.answer-gravatar(src=user.gravatar(60)) 
-                    span= ((answer.user_id.profile && answer.user_id.profile.name) || answer.user_id.email) + ' | ' +  answer.createdAt
+                    div
+                      img.answer-gravatar(src=user.gravatar(60)) 
+                      span= ((answer.user_id.profile && answer.user_id.profile.name) || answer.user_id.email) + ' | ' +  answer.createdAt
+                    div.user-ranking
+                      span= (answer.user_id.profile.votes || "0") + " votes" 
+                      if (answer.user_id.profile.badges.length != 0)
+                        each badge in answer.user_id.profile.badges
+                          if (badge == "Gold")
+                            i.fas.fa-circle.gold-badge
+                          else if (badge == "Silver")
+                            i.fas.fa-circle.silver-badge
+                          span= badge
             else
               p#no-answers No answers yet
           if (user)
