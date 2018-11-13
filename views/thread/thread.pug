@@ -19,7 +19,8 @@ block content
                 br
                 p= thread.description
                 .details
-                  img.answer-gravatar(src=user.gravatar(60)) 
+                  if(user)
+                    img.answer-gravatar(src=user.gravatar(60)) 
                   span= ((thread.user_id.profile && thread.user_id.profile.name) || thread.user_id.email) + ' | ' +  thread.createdAt
           .answers-container
             if (replies.length)
@@ -31,7 +32,8 @@ block content
                     a.downvote ▼
                   p=reply.text
                   .details 
-                    img.answer-gravatar(src=user.gravatar(60)) 
+                    if user
+                      img.answer-gravatar(src=user.gravatar(60)) 
                     span= ((reply.user_id.profile && reply.user_id.profile.name) || reply.user_id.email) + ' | ' +  reply.createdAt
             else
               br

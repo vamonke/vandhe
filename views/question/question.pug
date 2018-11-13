@@ -28,12 +28,14 @@ block content
                       i.fas.fa-star.gold-badge
                       span.professor-approved= "Professor Approved"
                   else
-                    if(user.profile.role == "Professor")
-                      button.btn.btn-primary.btn-approve(type='button' id= answer._id) Approve this answer
+                    if(user)
+                      if(user.profile.role == "Professor")
+                        button.btn.btn-primary.btn-approve(type='button' id= answer._id) Approve this answer
                   p=answer.text
                   .details 
                     div
-                      img.answer-gravatar(src=user.gravatar(60)) 
+                      if(user)
+                        img.answer-gravatar(src=user.gravatar(60)) 
                       span= ((answer.user_id.profile && answer.user_id.profile.name) || answer.user_id.email) + ' | ' +  answer.createdAt
                     div.user-ranking
                       span= (answer.user_id.profile.votes || "0") + " votes" 
