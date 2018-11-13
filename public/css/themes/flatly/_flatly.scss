@@ -477,6 +477,7 @@ input[type=radio]:checked + label {
 .question-card-number{
   float: left;
   margin-right: 30px;
+  color: black;
 }
 .question-card-row{
   margin: {
@@ -502,9 +503,10 @@ input[type=radio]:checked + label {
 // input[type="radio"]:checked+label{ font-weight: bold; }
 .card{
   a{
-    color: black;
+    color: #cccccc;
     &:hover{
       text-decoration: none;
+      color: #23cb9d;
     }
 
   }
@@ -532,6 +534,7 @@ input[type=radio]:checked + label {
   }
   width: 100%;
 }
+
 
 .user-ranking{
   font:{

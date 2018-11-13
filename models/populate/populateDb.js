@@ -31,10 +31,10 @@ const papers = [
 
 
 const questions = [
-  { questionNo: 1, text: lorem_ipsum },
-  { questionNo: 2, text: lorem_ipsum },
-  { questionNo: 3, text: lorem_ipsum },
-  { questionNo: 4, text: lorem_ipsum }
+  { questionNo: 1, text: "EBIDS (Electronics Bidding System) is an Internet-based vendor list and online bidding system. It maintains a database for online Request for Tender (RFT) and Interest to Bid (ITB) registration. Both vendors and suppliers wishing to participate are required to register onto the EBIDS system. How would you code out this registration process?"},
+  { questionNo: 2, text: "Code a navigation bar which is located at the upper half of the left column, which consists of a few 150x40 pixels image buttons, i.e. image links to other parts of the website." },
+  { questionNo: 3, text: "In order to track all records of tenders awarded it's is neccessary to update all successful bids on the corresponding records of RFTs. Write object-oriented MySQL queries in PHP script to update lowerest cost bid." },
+  { questionNo: 4, text: "Indicate the primary key in each of the database tables and any foreign key, where neccessary, to minimize data redundancy. Highlight the primary keys with double underline and foreign keys with single underline"}
 ];
 
 const answers = [
@@ -44,9 +44,9 @@ const answers = [
 ];
 
 const threads = [
-  { title: 'How do I use Regex for digits only?', description: lorem_ipsum },
-  { title: 'How do I use Regex for digits only?', description: lorem_ipsum },
-  { title: 'How do I use Regex for digits only?', description: lorem_ipsum }
+  { title: 'Use Atom To record my notes', description: "I was wondering if there is a way to program Atom to record my keystrokes in the background as I make notes in other Applications. I am extremely new to all of this, Thanks!"},
+  { title: 'What Framework you are using to style your Electron app', description: "There are many Frameworks out there to create Single Page Applicatons, React, Vue, Angular are the most popular. But what Framework works best in combination with Electron? Is there trick to style the electron app fast and give the app a native look, or is using Frameworks like this the best method? Thanks" },
+  { title: 'Custom text color with different encoding', description: "The problem is that the encoding that I am using is ISO 8859-7, Greek language and doesn’t change the color even if I set a regex for encoding in the .cson file ( similar to this \uFFFF) .What am I missing here?" }
 ];
 const replies = JSON.parse(JSON.stringify(answers));
 

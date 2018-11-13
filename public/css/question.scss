@@ -7,6 +7,17 @@ $red: #f46303;
   top: 10px;
 }
 
+.btn-primary:hover {
+  background-color: #03a9f4;
+  border: none;
+}
+
+.btn-primary {
+  background-color: transparent;
+  color: #03a9f4;
+  border: 1px solid #03a9f4;
+}
+
 .center {
   text-align: center;
 }
@@ -15,21 +26,48 @@ $red: #f46303;
   font-size: 2em;
 }
 
+h4 {
+  color: black;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+#activity {
+  margin-top: 34px;
+}
+
+#replycount {
+  margin-top: 44px;
+}
+
 .description {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .question-bg {
-  background-color: #EEE;
+  background-color: white;
+  border-bottom: none;
+}
+
+.card {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent
+}
+
+.card-body {
+}
+
+hr {
+  border: 1px black solid;
 }
 
 .thread-card {
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  margin-top: 20px;
-  margin-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -92,12 +130,25 @@ $red: #f46303;
 
 .forum-labels {
   font-weight: 600;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.125);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  padding-bottom: 10px;
 }
 
 .forum-sort-box {
   margin-top: 10px;
   a {
     display: inline-block;
-    margin-left: 8px;
+    color: black;
+    padding: 4px 24px;
+    margin-left: 10px;
+    margin-bottom: 40px;
+  }
+  a:hover,a.active {
+    background-color: #03a9f4;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
   }
 }
