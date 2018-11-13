@@ -35,7 +35,7 @@ exports.create = async (req, res) => {
   let answer = await Answer.create(newAnswer);
   answer = answer.toObject();
   answer.user = req.user;
-  answer.createdAt = moment(answer.createdAt).format("D MMMM YYYY");
+  answer.createdAt = moment(answer.createdAt).fromNow();
   res.json(answer);
 };
 
