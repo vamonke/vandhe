@@ -15,10 +15,10 @@
       .col-2.center Activity
     if (threads.length)
       each thread in threads
-        .row.thread-card.vote-data
-          .col-1.center.votes
+        .row.thread-card
+          .col-1.center.votes(data-user-vote=thread.userVote data-post-id=thread._id)
             a.upvote ▲
-            .vote-count=0
+            h1.vote-count= thread.votes
             a.downvote ▼
           .col-8
             a(href= mod.code + '/' + thread._id)
@@ -32,6 +32,7 @@
             else
               div Asked
               =thread.createdAt
+      script(src='/js/vote.js')
   else
     .no-paper
       h1 We could not find what you were looking for. Try searching again?

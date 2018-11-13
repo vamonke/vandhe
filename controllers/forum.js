@@ -31,18 +31,65 @@ exports.getForumThreads = async (req, res) => {
     return res.render('forums/forum', {});
   }
   let threads = await Thread.find({ module: code });
-  const thread_ids = threads.map(thread => thread._id);
-  let counts = await getThreadReplyCounts(thread_ids);
-  console.log(counts);
+  let thread_ids = threads.map(thread => thread._id);
+  let replyCounts = await getThreadReplyCounts(thread_ids);
+  thread_ids = thread_ids.map(id => id.toString());
+
+  const voteCounts = await Vote.aggregate([
+    { $match: {
+      post_id: { $in: thread_ids }
+    }},
+    { $project: {
+      post_id: 1,
+      value: 1,
+      user_id: 1,
+    }},
+    { $group: {
+      _id: '$post_id',
+      voteCount: { $sum: '$value' },
+    }}
+  ]);
+  // console.log(voteCounts);
+
+  // Find user votes
+  let userVotes = [];
+  if (req.user) {
+    userVotes = await Vote.aggregate([
+      { $match: {
+        post_id: { $in: thread_ids },
+        user_id: { $eq: req.user._id }
+      }},
+      { $project: {
+        _id: 0,
+        post_id: 1,
+        value: 1,
+      }}
+    ]);
+    // console.log(userVotes);
+  }
 
   threads = threads.map(thread => {
     let threadObj = thread.toObject();
-    const countObj = counts.find(count =>
-      count._id.toString() == threadObj._id.toString());
-    if (countObj) {
-      console.log(countObj);
-      threadObj.replyCount = countObj.replyCount;
-      const lastReplied = moment(countObj.lastReplied).fromNow();
+    
+    // Add vote count
+    const threadVoteCount = voteCounts.find(vote =>
+      (vote._id.toString() == threadObj._id.toString())
+    );
+    // console.log(threadVoteCount);
+    threadObj.votes = threadVoteCount ? threadVoteCount.voteCount : 0;
+    
+    // Add thread user vote
+    const threadUserVote = userVotes.find(userVote =>
+      (userVote.post_id.toString() == threadObj._id)
+    );
+    threadObj.userVote = threadUserVote ? threadUserVote.value : 0;
+
+    // Add reply count
+    const replyCountObj = replyCounts.find(count =>
+      count._id.toString() == threadObj._id);
+    if (replyCountObj) {
+      threadObj.replyCount = replyCountObj.replyCount;
+      const lastReplied = moment(replyCountObj.lastReplied).fromNow();
       threadObj.lastReplied = lastReplied;
     } else {
       const createdAt = moment(threadObj.createdAt).fromNow();
@@ -50,7 +97,7 @@ exports.getForumThreads = async (req, res) => {
     }
     return threadObj;
   });
-  console.log(threads);
+  // console.log(threads);
   res.render('forums/forum', {
     mod: mod,
     threads: threads,

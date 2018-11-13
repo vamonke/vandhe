@@ -26,5 +26,6 @@ exports.toggleVote = async (req, res) => {
     await Vote.create(Object.assign(selector, { value }));
     result = { value };
   }
-  res.send(result);
+  // console.log(result);
+  res.json(result);
 };
