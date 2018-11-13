@@ -6,14 +6,20 @@
         a(id='ask-question')
           .btn.btn-primary
             | Ask Question
-    .row
-      .col-12
-        hr
-      .col-1.center Score
-      .col-8 Topic
-      .col-1.center Replies
-      .col-2.center Activity
     if (threads.length)
+      div.forum-sort-box
+        span Sort by:
+        = ' '
+        a(href='?sortBy=score') Top
+        a(href='?sortBy=latest') Latest
+        a(href='?sortBy=replies') Replies
+      .row.forum-labels
+        .col-12
+          hr
+        .col-1.center Score
+        .col-8 Topic
+        .col-1.center Replies
+        .col-2.center Activity
       each thread in threads
         .row.thread-card
           .col-1.center.votes(data-user-vote=thread.userVote data-post-id=thread._id)
@@ -33,6 +39,9 @@
               div Asked
               =thread.createdAt
       script(src='/js/vote.js')
+    else
+      hr
+      p No questions yet
   else
     .no-paper
       h1 We could not find what you were looking for. Try searching again?

@@ -24,6 +24,7 @@ async function getThreadReplyCounts(thread_ids) {
 }
 
 exports.getForumThreads = async (req, res) => {
+  const sortBy = req.query.sortBy;
   const code = req.params.code.toUpperCase();
   const mod = await Module.findOne({ code });
   // const module_id = mod._id;
@@ -91,17 +92,31 @@ exports.getForumThreads = async (req, res) => {
       threadObj.replyCount = replyCountObj.replyCount;
       const lastReplied = moment(replyCountObj.lastReplied).fromNow();
       threadObj.lastReplied = lastReplied;
+      threadObj.order = replyCountObj.lastReplied;
     } else {
+      threadObj.order = threadObj.createdAt;
       const createdAt = moment(threadObj.createdAt).fromNow();
       threadObj.createdAt = createdAt;
+      threadObj.replyCount = 0;
     }
     return threadObj;
   });
+
+  threads.sort((a,b) => {
+    if (sortBy && sortBy == 'score')
+      return b.votes-a.votes;
+    else if (sortBy && sortBy == 'replies')
+      return b.replyCount-a.replyCount;
+    else
+      return moment(b.order).diff(moment(a.order));
+  });
+
   // console.log(threads);
   res.render('forums/forum', {
     mod: mod,
     threads: threads,
     params: req.params,
+    sortBy: sortBy
   });
 };
 
