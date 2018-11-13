@@ -177,6 +177,7 @@ app.get('/api/modules', moduleController.getModulesByCourse);
  * Paper routes
  */
 app.get('/papers', paperController.getPaperByCodeYearSem);
+app.get('/papers/long', paperController.getPaperLong);
 app.post('/papers', paperController.postPaperByCodeYearSem);
 /***
  * Question routes

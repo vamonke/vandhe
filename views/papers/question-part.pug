@@ -1,0 +1,14 @@
+.row.question-card-row
+  .col-12
+    .card(
+      data-school=params.school
+      data-course=params.course
+      data-code=params.code
+      data-year=params.year
+      data-sem=params.sem
+      data-questionNo=question.questionNo
+      data-questionId=part._id)
+      .card-body
+        h5.question-card-number= part.questionNo + '.'
+        p= part.text || 'Click to view question'
+        //- p= JSON.stringify(question)

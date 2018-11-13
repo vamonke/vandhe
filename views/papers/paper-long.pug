@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  .paper-container
+    .row.sidebar-row
+      include ../partials/pyp-sidebar
+      .col-10
+        .container#paper-main-container
+          if (render == 'questions')
+            if (paper)
+              .row
+                .col-12
+                  h5= params.school + ' > ' + params.course + ' > ' + params.code + ' > AY ' + params.year + ' > S' + params.sem
+                  br
+              each question in questions
+                .question-line
+                  if (question.text !== null)
+                    h1= "Q" + question.questionNo
+                    p= question.text
+                    //- p= JSON.stringify(question)
+                each part in question.questionParts
+                  include question-part
+            else
+              .no-paper
+                h1 We could not find what you were looking for. Try searching again?
+                h1 OR
+                h1 Ask a question!
+                a(href="#")
+                  input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')  
+          else
+            .no-paper
+              h1 We could not find what you were looking for. Try searching again?
+              h1 OR
+              h1 Ask a question!
+              a(href="#")
+                input.btn.btn-warning.button.button-primary(type='button', value='Community Forums')
+  script(src='/js/paper.js')
