@@ -19,6 +19,15 @@
               if user.profile.picture
                 img(src=user.profile.picture)
               else
+                if user.profile.votes
+                  span= user.profile.votes
+                if user.profile.badges
+                  each badge in user.profile.badges
+                    if (badge == "Gold")
+                      i.fas.fa-circle.gold-badge
+                    else if (badge == "Silver")
+                      i.fas.fa-circle.silver-badge
+                    
                 img(src=user.gravatar(60))
               span= user.profile.name || user.email || user.id
               i.caret
