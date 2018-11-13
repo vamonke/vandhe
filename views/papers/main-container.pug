@@ -6,6 +6,7 @@
           h1 What question are you looking for?
       include selector
       each question in questions
+        p= answers
         .row.question-card-row
           .col-12
             .card
@@ -15,7 +16,7 @@
                   .card-body
                     h1.question-card-number= "Q" + question.questionNo
                     p= question.text || 'Click to view question'
-                    //- p= JSON.stringify(question)
+                    //- p= JSON.stringify(answers)
               else 
                 form(method='POST', action='/papers')
                   input(type='hidden', name='school', value= params.school)

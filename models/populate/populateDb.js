@@ -29,6 +29,7 @@ const papers = [
   { year: 2017, semester: 2 }
 ];
 
+
 const questions = [
   { questionNo: 1, text: lorem_ipsum },
   { questionNo: 2, text: lorem_ipsum },
@@ -72,7 +73,7 @@ async function populateDb() {
   const question_id = await populateTable(Question, questions, 'Questions', { paper_id });
   const randomUser = await User.findOne();
   await populateTable(Answer, answers, 'Answers', { question_id, user_id: randomUser._id });
-  
+
   // Create forum threads and replies
   const thread_id = await populateTable(Thread, threads, 'Threads', { module: mod.code, user_id: randomUser._id });
   await populateTable(Reply, replies, 'Replies', { thread_id, user_id: randomUser._id });
@@ -87,7 +88,7 @@ async function emptyTables() {
   await Vote.deleteMany();
   await Thread.deleteMany();
   await Reply.deleteMany();
-}  
+}
 
 async function addCourseFromJSON() {
   console.log('Drop tables');
